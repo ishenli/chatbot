@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">小默助理</string>
+    <string name="title_home">首页</string>
+    <string name="title_dashboard">助理</string>
+    <string name="title_notifications">通知</string>
+    <string name="loan_tip">XX, 你可以借(元)</string>
+</resources>
