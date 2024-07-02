@@ -2,4 +2,8 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <!--antui的样式覆盖-->
+    <dimen name="AU_CORNER3">4dp</dimen>
+
+    <!--md的样式覆盖-->
 </resources>

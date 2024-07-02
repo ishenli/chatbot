@@ -1,20 +1,25 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Demo" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.WeChat" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowLightStatusBar">true</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/alipay_primary</item>
         <item name="colorPrimaryVariant">@color/alipay_primary</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!--        <item name="colorOnPrimary">@color/white</item>-->
+        <!--        &lt;!&ndash; Secondary brand color. &ndash;&gt;-->
+        <!--        <item name="colorSecondary">@color/teal_200</item>-->
+        <!--        <item name="colorSecondaryVariant">@color/teal_700</item>-->
+        <!--        <item name="colorOnSecondary">@color/black</item>-->
+        <!--        &lt;!&ndash; Status bar color. &ndash;&gt;-->
+        <!--        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>-->
         <!-- Customize your theme here. -->
+        <item name="strokeColor">@color/black</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:navigationBarColor">@color/alipay_bg_gray</item>
+        <item name="android:windowBackground">@color/alipay_bg_gray</item>
+        <!--        修改 statusBar 的效果-->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
-
-    <!--antui的样式覆盖-->
-    <color name="AU_COLOR9">@color/alipay_primary</color>
-    <dimen name="AU_CORNER3">4dp</dimen>
+    <!--    <style name="Theme.Demo" parent="Theme.AppCompat.DayNight.NoActionBar"/>-->
 </resources>

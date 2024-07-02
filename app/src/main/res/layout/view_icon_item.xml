@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="item"
+            type="com.example.wechat.ui.my.ServiceItem" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/bg_button"
+        android:gravity="center"
+        android:clickable="true"
+        android:orientation="vertical" >
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="42dp"
+            android:contentDescription="TODO"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            app:svgSource="@{item.icon}"
+            android:layout_gravity="center" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="8dp"
+            android:text="@{item.name}"
+            android:layout_gravity="center" />
+    </LinearLayout>
+</layout>

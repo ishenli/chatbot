@@ -8,6 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="alipay_primary">#1677ff</color>
+    <color name="alipay_green">#73d13d</color>
     <color name="alipay_gray">#666666</color>
-    <color name="alipay_bg_gray">#F5F5F5</color>
+    <color name="alipay_bg_gray">#F7F7F7</color>
+    <color name="alipay_bg_hover_gray">#EDEDED</color>
+    <color name="alipay_border_gray">#CBCBCB</color>
+    <color name="AU_COLOR9">@color/alipay_primary</color>
 </resources>

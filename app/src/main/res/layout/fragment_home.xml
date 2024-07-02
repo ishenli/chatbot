@@ -1,59 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.alipay.mobile.antui.basic.AURelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <com.alipay.mobile.antui.basic.AUView
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+    <LinearLayout
+        android:id="@+id/root"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="270dp"
-        android:background="@drawable/my_gradient_bg"/>
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        >
+        android:layout_height="match_parent">
         <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_border_bottom"
+            android:layout_width="match_parent"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="30dp"
+            android:layout_height="90dp"
+            tools:ignore="MissingConstraints">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/title_home"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="10dp"
+                android:contentDescription="@string/arrow"
+                android:src="@drawable/icon_search" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:contentDescription="@string/arrow"
+                android:src="@drawable/icon_add" />
+        </LinearLayout>
+        <LinearLayout
+            android:paddingBottom="50dp"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_corners"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:orientation="vertical">
-            <com.alipay.mobile.antui.basic.AUTextView
-                android:id="@+id/amount_title"
+            tools:ignore="MissingConstraints">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/chatView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/loan_tip"
-                android:textSize="11sp"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:paddingTop="48dp"
-                android:textColor="@color/alipay_gray" />
-            <com.alipay.mobile.antui.basic.AUTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/app_name"
-                android:textSize="50sp"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:textColor="@color/black" />
-            <com.alipay.mobile.antui.basic.AUTextView
-                android:id="@+id/amount_tip"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/loan_tip"
-                android:textSize="11sp"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:textColor="@color/black" />
-            <com.alipay.mobile.antui.basic.AUButton
-                android:id="@+id/apply_btn"
-                style="@style/mainButtonStyle"
-                android:layout_margin="12dp"
-                android:background="@color/alipay_gray"
-                android:text="去借钱"/>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
-    </FrameLayout>
-</com.alipay.mobile.antui.basic.AURelativeLayout>
+    </LinearLayout>
+</layout>

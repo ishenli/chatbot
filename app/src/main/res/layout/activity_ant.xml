@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+
+            <com.alipay.mobile.antui.basic.AUAssistLabelView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="带图标、说明的列表项"
+                app:isHead="true" />
+
+            <com.alipay.mobile.antui.tablelist.AUSingleTitleListItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                app:listLeftText="标题文字"
+                app:listRightText="说明信息特别长说明信息特别长说明信息特别长说明信息特别长"
+                app:listItemType="top"
+                app:listShowArrow="false" />
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

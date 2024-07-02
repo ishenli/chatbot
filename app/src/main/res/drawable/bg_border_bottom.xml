@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/alipay_border_gray"/>
+        </shape>
+    </item>
+    <item android:bottom="1px">
+        <shape android:shape="rectangle">
+            <size android:height="1dp"/>
+            <solid android:color="@color/alipay_bg_hover_gray"/>
+        </shape>
+    </item>
+</layer-list>
