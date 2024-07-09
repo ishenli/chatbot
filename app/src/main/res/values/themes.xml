@@ -1,10 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.WeChat" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:windowLightStatusBar">true</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/alipay_primary</item>
-        <item name="colorPrimaryVariant">@color/alipay_primary</item>
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryVariant">@color/color_primary</item>
         <!--        <item name="colorOnPrimary">@color/white</item>-->
         <!--        &lt;!&ndash; Secondary brand color. &ndash;&gt;-->
         <!--        <item name="colorSecondary">@color/teal_200</item>-->
@@ -15,11 +14,32 @@
         <!-- Customize your theme here. -->
         <item name="strokeColor">@color/black</item>
         <item name="android:elevation">0dp</item>
-        <item name="android:navigationBarColor">@color/alipay_bg_gray</item>
-        <item name="android:windowBackground">@color/alipay_bg_gray</item>
+        <item name="android:navigationBarColor">@color/bg_gray</item>
+        <item name="android:windowBackground">@color/bg_gray</item>
         <!--        修改 statusBar 的效果-->
         <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
-    <!--    <style name="Theme.Demo" parent="Theme.AppCompat.DayNight.NoActionBar"/>-->
+
+    <style name="AppTheme.LightAppbar">
+        <item name="colorPrimary">@color/gray</item>
+        <item name="colorPrimaryDark">@color/gray</item>
+        <item name="actionMenuTextColor">@color/gray</item>
+        <item name="overlapAnchor">false</item>
+        <item name="titleTextColor">@color/black</item>
+        <item name="android:textColorPrimary">@color/black</item>
+    </style>
+
+    <style name="AppTheme.DarkAppbar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary</item>
+        <item name="actionMenuTextColor">@color/white</item>
+        <item name="overlapAnchor">false</item>
+        <item name="titleTextColor">@color/white</item>
+        <item name="iconTint">@color/white</item>
+        <item name="colorControlNormal">@color/gray</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

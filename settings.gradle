@@ -29,3 +29,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "wechat"
 include ':app'
+include ':emojilibrary'

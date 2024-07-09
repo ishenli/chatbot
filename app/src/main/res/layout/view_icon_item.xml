@@ -5,7 +5,7 @@
     <data>
         <variable
             name="item"
-            type="com.example.wechat.ui.my.ServiceItem" />
+            type="com.example.wechat.main.my.ServiceItem" />
     </data>
 
     <LinearLayout

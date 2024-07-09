@@ -5,13 +5,29 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
+
     <color name="white">#FFFFFFFF</color>
-    <color name="alipay_primary">#1677ff</color>
+    <color name="color_primary">#1677ff</color>
+    <color name="lightColorPrimary">#A8BDFF</color>
+    <color name="light_blue_400">#FF29B6F6</color>
+    <color name="light_blue_600">#FF039BE5</color>
+
     <color name="alipay_green">#73d13d</color>
-    <color name="alipay_gray">#666666</color>
-    <color name="alipay_bg_gray">#F7F7F7</color>
-    <color name="alipay_bg_hover_gray">#EDEDED</color>
-    <color name="alipay_border_gray">#CBCBCB</color>
-    <color name="AU_COLOR9">@color/alipay_primary</color>
+
+    <color name="black_origin">#FF000000</color>
+    <color name="black">#1C1C1C</color>
+    <color name="gray_primary">#666666</color>
+    <color name="bg_gray">#F7F7F7</color>
+    <color name="bg_hover_gray">#EDEDED</color>
+    <color name="border_gray">#CBCBCB</color>
+    <color name="gray_400">#FFBDBDBD</color>
+    <color name="gray_600">#FF757575</color>
+    <color name="primary_item_pressed_color">#E5E5E5</color>
+    <color name="arrow_color">#B1B1B1</color>
+
+
+    <color name="red0">#F95569</color>
+    <color name="red6">#D54A47</color>
+    <color name="red7">#E64340</color>
+    <color name="red8">#FF3E3E</color>
 </resources>

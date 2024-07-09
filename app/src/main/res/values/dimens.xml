@@ -5,5 +5,24 @@
     <!--antui的样式覆盖-->
     <dimen name="AU_CORNER3">4dp</dimen>
 
-    <!--md的样式覆盖-->
+    <!--主界面底部图标大小-->
+
+    <!--列表item间距-->
+    <dimen name="item_margin_left_and_right">16dp</dimen>
+    <dimen name="item_margin_top_and_bottom">6dp</dimen>
+
+    <!--选项间距-->
+    <dimen name="option_item_margin_top">10dp</dimen>
+    <dimen name="option_item_margin_left">16dp</dimen>
+    <dimen name="option_item_margin_right">16dp</dimen>
+
+    <dimen name="min_keyboard_size">50dp</dimen>
+    <dimen name="default_custom_keyboard_size">250dp</dimen>
+    <dimen name="min_custom_keyboard_size">110dp</dimen>
+    <dimen name="min_custom_keyboard_top_margin">170dp</dimen>
+    <dimen name="min_custom_keyboard_top_margin_portrait">170dp</dimen>
+    <dimen name="min_custom_keyboard_top_margin_landscape_bubble">56dp</dimen>
+
+    <dimen name="dimen_30dp">30dp</dimen>
+    <dimen name="dp_2">2dp</dimen>
 </resources>

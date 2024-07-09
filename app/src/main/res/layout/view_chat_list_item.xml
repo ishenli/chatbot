@@ -6,7 +6,7 @@
     <data>
         <variable
             name="chatItemView"
-            type="com.example.wechat.ui.home.chat.chatList.ChatListItemVO" />
+            type="com.example.wechat.main.home.chat.chatList.ChatListItemVO" />
     </data>
     <LinearLayout
         android:id="@+id/chatViewItem"
@@ -69,7 +69,7 @@
                 android:height="18dp"
                 android:text="@{chatItemView.message}"
                 android:textAlignment="textStart"
-                android:textColor="@color/alipay_gray"
+                android:textColor="@color/gray_primary"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -103,7 +103,7 @@
                 android:layout_marginTop="6dp"
                 android:height="20dp"
                 android:textAlignment="textStart"
-                android:textColor="@color/alipay_gray"
+                android:textColor="@color/gray_primary"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

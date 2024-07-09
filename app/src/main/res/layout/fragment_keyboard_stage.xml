@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="320dp"
-    tools:context=".widget.inputPanel.StageKeyboardFragment">
+    tools:context=".chat.inputPanel.StageKeyboardFragment">
 
     <TextView
         android:background="#FF0000"
