@@ -166,6 +166,7 @@
                         android:src="@drawable/icon_arrow_right"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/addUserBtn"
                     android:background="@drawable/bg_list_action"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
@@ -177,7 +178,7 @@
                     android:clickable="true"
                     tools:ignore="RtlSymmetry,UseCompoundDrawables">
                     <TextView
-                        android:text="@string/favouriteText"
+                        android:text="@string/addUser"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:textSize="16sp"

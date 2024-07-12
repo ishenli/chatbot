@@ -1,6 +1,13 @@
 [versions]
 agp = "8.2.0"
+androidxJunit = "1.1.3"
+compiler = "4.15.1"
+coreTesting = "2.2.0"
+coreVersion = "3.3.0"
+espressoCoreVersion = "3.4.0"
+jodaTime = "2.10.8"
 junit = "4.13.2"
+junitJunit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
 appcompat = "1.6.1"
@@ -8,23 +15,49 @@ material = "1.10.0"
 constraintlayout = "2.1.4"
 lifecycleLivedataKtx = "2.6.1"
 lifecycleViewmodelKtx = "2.6.1"
+mockitoCore = "2.25.0"
 navigationFragment = "2.6.0"
 navigationUi = "2.6.0"
 legacySupportV4 = "1.0.0"
+core = "1.6.1"
+picasso = "2.71828"
+roomGuava = "2.6.1"
+roomPaging = "2.6.1"
+roomRuntime = "2.6.1"
+roomRxjava3 = "2.6.1"
+roomTesting = "2.6.1"
+rxandroid = "3.0.0"
 
 [libraries]
+compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compiler" }
+core-testing = { module = "androidx.arch.core:core-testing", version.ref = "coreTesting" }
+espresso-core-v340 = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCoreVersion" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "compiler" }
+joda-time = { module = "joda-time:joda-time", version.ref = "jodaTime" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+junit-v113 = { module = "androidx.test.ext:junit", version.ref = "androidxJunit" }
+junit-v412 = { module = "junit:junit", version.ref = "junitJunit" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
+material-dialogs-core = { module = "com.afollestad.material-dialogs:core", version.ref = "coreVersion" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
 navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationFragment" }
 navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigationUi" }
 antui = { group = "com.mpaas.android", name = "antui" }
 legacy-support-v4 = { group = "androidx.legacy", name = "legacy-support-v4", version.ref = "legacySupportV4" }
+core = { group = "androidx.test", name = "core", version.ref = "core" }
+picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
+room-guava = { module = "androidx.room:room-guava", version.ref = "roomGuava" }
+room-paging = { module = "androidx.room:room-paging", version.ref = "roomPaging" }
+room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+room-rxjava3 = { module = "androidx.room:room-rxjava3", version.ref = "roomRxjava3" }
+room-testing = { module = "androidx.room:room-testing", version.ref = "roomTesting" }
+rxandroid = { module = "io.reactivex.rxjava3:rxandroid", version.ref = "rxandroid" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

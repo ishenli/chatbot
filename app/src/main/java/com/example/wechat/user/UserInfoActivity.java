@@ -1,5 +1,6 @@
 package com.example.wechat.user;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -31,6 +32,19 @@ public class UserInfoActivity extends BaseActivity {
     protected void bindEvents() {
         super.bindEvents();
         titleTextView = findViewById(R.id.titleTextView);
+        binding.aliasOptionItemView.setOnClickListener( v -> goToChangeName());
+    }
+
+    private void goToChangeName() {
+        String userId = userViewModel.getUserId();
+        if (userId.equals(userInfo.uid)) {
+            Intent intent = new Intent(this, ChangeMyNameActivity.class);
+            intent.putExtra("userInfo", userInfo);
+            startActivity(intent);
+        } else {
+//            Intent intent = new Intent(this, ChangeMyNameActivity.class);
+//            startActivity(intent);
+        }
     }
 
     @Override

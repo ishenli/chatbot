@@ -18,6 +18,7 @@ import com.example.wechat.R;
 import com.example.wechat.databinding.FragmentMyBinding;
 import com.example.wechat.model.UserInfo;
 import com.example.wechat.user.UserInfoActivity;
+import com.example.wechat.user.UserInfoCreateActivity;
 import com.example.wechat.user.UserViewModel;
 
 import java.util.ArrayList;
@@ -81,6 +82,11 @@ public class MyFragment extends Fragment {
         binding.meInfo.setOnClickListener( v -> {
             Intent intent = new Intent(getActivity(), UserInfoActivity.class);
             intent.putExtra("userInfo", userInfo);
+            startActivity(intent);
+        });
+
+        binding.addUserBtn.setOnClickListener( view -> {
+            Intent intent = new Intent(getActivity(), UserInfoCreateActivity.class);
             startActivity(intent);
         });
     }

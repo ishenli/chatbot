@@ -1,13 +1,24 @@
 package com.example.wechat.repository.entity;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(tableName = "user_table")
 public class User {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private Long id;
-    private String username;
+
+    @ColumnInfo
+    private String uid;
+
+    @ColumnInfo
+    private String nickname;
+
+    private String name;
+
+    @ColumnInfo
+    private String avatar;
 
     public Long getId() {
         return id;
@@ -17,11 +28,36 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+
+    public String getUid() {
+        return uid;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

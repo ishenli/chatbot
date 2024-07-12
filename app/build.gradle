@@ -35,27 +35,32 @@ android {
 }
 
 dependencies {
+    implementation libs.core
+
+    // room
     def room_version = "2.6.1"
-    implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
+    implementation libs.room.runtime
+    implementation libs.room.rxjava3
+    implementation libs.rxandroid
+    implementation libs.room.guava
+    implementation libs.room.paging
+    testImplementation libs.room.testing
 
-    // optional - RxJava3 support for Room
-    implementation "androidx.room:room-rxjava3:$room_version"
+    // 测试
+    testImplementation libs.junit.v412
+    testImplementation libs.mockito.core
+    androidTestImplementation libs.junit.v113
+    androidTestImplementation libs.espresso.core.v340
+    testImplementation libs.core.testing
 
-    // optional - Guava support for Room, including Optional and ListenableFuture
-    implementation "androidx.room:room-guava:$room_version"
-
-    // optional - Test helpers
-    testImplementation "androidx.room:room-testing:$room_version"
-
-    // optional - Paging 3 Integration
-    implementation "androidx.room:room-paging:$room_version"
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
-    implementation libs.legacy.support.v4
-    implementation 'joda-time:joda-time:2.10.8'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
-    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation platform("com.mpaas.android:$mpaas_artifact:$mpaas_baseline")
+    implementation libs.glide
+    implementation libs.joda.time
+    implementation libs.legacy.support.v4
+    annotationProcessor libs.compiler
+    implementation libs.picasso
+    implementation libs.material.dialogs.core
     implementation libs.appcompat
     implementation libs.material
     implementation libs.constraintlayout

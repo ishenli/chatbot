@@ -152,37 +152,7 @@
             android:layout_marginTop="10dp"
             android:orientation="vertical">
 
-            <View style="@style/Line" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:background="@drawable/selector_common_item"
-                android:gravity="center_vertical"
-                android:paddingLeft="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:text="朋友圈"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:src="@mipmap/ic_right" />
-
-            </LinearLayout>
-
-            <View style="@style/Line" />
+<!--            <View style="@style/Line" />-->
 
         </LinearLayout>
 

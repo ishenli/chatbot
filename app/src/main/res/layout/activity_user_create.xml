@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_hover_gray"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar" />
+
+    <EditText
+        android:id="@+id/nickNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
+        android:background="@null"
+        android:drawableBottom="@drawable/shape_bottom_primary"
+        android:drawablePadding="5dp"
+        android:gravity="bottom"
+        android:maxLength="255"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:textSize="16sp"
+        android:visibility="visible" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="@string/change_my_name_tip"
+        android:textColor="@color/gray"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/nameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
+        android:background="@null"
+        android:drawableBottom="@drawable/shape_bottom_primary"
+        android:drawablePadding="5dp"
+        android:gravity="bottom"
+        android:maxLength="255"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:textSize="16sp"
+        android:visibility="visible" />
+
+    <EditText
+        android:id="@+id/avatarEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
+        android:background="@null"
+        android:drawableBottom="@drawable/shape_bottom_primary"
+        android:drawablePadding="5dp"
+        android:gravity="bottom"
+        android:maxLength="255"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:textSize="16sp"
+        android:visibility="visible" />
+</LinearLayout>

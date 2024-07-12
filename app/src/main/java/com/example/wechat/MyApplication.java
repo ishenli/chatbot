@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.example.emojilibrary.LQREmotionKit;
+import com.example.wechat.api.ChatApi;
 import com.example.wechat.core.util.ChatKit;
 
 public class MyApplication extends Application {
@@ -25,6 +26,7 @@ public class MyApplication extends Application {
             }
         });
 
+        ChatApi.init(this);
         ChatKit chatKit = ChatKit.getChatKit();
         chatKit.init(this);
     }

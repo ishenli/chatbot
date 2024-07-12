@@ -20,4 +20,5 @@
     <string name="send_message">发消息</string>
     <string name="add_to_contact">添加到通讯录</string>
     <string name="change_my_name_tip">好名字可以让你的朋友 更容易记住你。</string>
+    <string name="addUser">新增用户</string>
 </resources>
