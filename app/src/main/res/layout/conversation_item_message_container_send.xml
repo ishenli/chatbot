@@ -125,7 +125,7 @@
                 android:id="@+id/nameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:ellipsize="end"
                 android:maxLength="20"
                 android:singleLine="true"
@@ -139,7 +139,7 @@
                 android:id="@+id/contentFrameLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="4dp">
+                android:layout_marginEnd="4dp">
 
                 <ViewStub
                     android:id="@+id/contentViewStub"

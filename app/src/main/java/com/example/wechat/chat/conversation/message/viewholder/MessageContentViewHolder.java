@@ -12,7 +12,7 @@ import com.example.wechat.R;
 import com.example.wechat.chat.conversation.ConversationFragment;
 import com.example.wechat.chat.conversation.ConversationMessageAdapter;
 import com.example.wechat.chat.conversation.MessageViewModel;
-import com.example.wechat.chat.conversation.message.Message;
+import com.example.wechat.model.Message;
 import com.example.wechat.core.util.TimeUtils;
 import com.example.wechat.model.MessageVO;
 

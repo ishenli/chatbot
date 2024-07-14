@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wechat.R;
 import com.example.wechat.chat.conversation.ConversationFragment;
-import com.example.wechat.chat.conversation.message.Message;
+import com.example.wechat.model.Message;
 import com.example.wechat.model.Conversation;
 import com.example.wechat.model.MessageVO;
 

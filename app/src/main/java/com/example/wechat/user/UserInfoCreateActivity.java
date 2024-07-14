@@ -82,6 +82,7 @@ public class UserInfoCreateActivity extends BaseActivity {
                 Toast.makeText(UserInfoCreateActivity.this, "新增失败", Toast.LENGTH_SHORT).show();
             }
         });
+        userViewModel.getAllUserInfo();
     }
 
 

@@ -9,8 +9,8 @@ import static com.example.wechat.chat.conversation.message.core.MessageContentTy
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.example.wechat.chat.conversation.message.Message;
-import com.example.wechat.chat.conversation.message.MessageContent;
+import com.example.wechat.model.Message;
+import com.example.wechat.model.MessageContent;
 
 @ContentTag(type = ContentType_Unknown, flag = PersistFlag.Persist)
 public class UnknownMessageContent extends MessageContent {

@@ -9,6 +9,7 @@
 
     <EditText
         android:id="@+id/nickNameEditText"
+        android:hint="请输入昵称"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
@@ -30,11 +31,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:text="@string/change_my_name_tip"
-        android:textColor="@color/gray"
+        android:textColor="@color/black"
         android:textSize="14sp" />
 
     <EditText
         android:id="@+id/nameEditText"
+        android:hint="请输入账号"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
@@ -53,6 +55,7 @@
 
     <EditText
         android:id="@+id/avatarEditText"
+        android:hint="请输入头像地址，不输入则使用随机生成"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"

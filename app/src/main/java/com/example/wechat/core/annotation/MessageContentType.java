@@ -4,7 +4,7 @@
 
 package com.example.wechat.core.annotation;
 
-import com.example.wechat.chat.conversation.message.MessageContent;
+import com.example.wechat.model.MessageContent;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

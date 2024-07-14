@@ -157,7 +157,9 @@ public abstract class BaseActivity extends AppCompatActivity {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 drawable.setTintList(null);
             }
-            toolBarText.setTextColor(Color.BLACK);
+            if (toolBarText!=null) {
+                toolBarText.setTextColor(Color.BLACK);
+            }
         }
         getSupportActionBar().setHomeAsUpIndicator(drawable);
         if (showHomeMenuItem()) {

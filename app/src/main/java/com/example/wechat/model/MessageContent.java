@@ -2,7 +2,7 @@
  * Copyright (c) 2020 WildFireChat. All rights reserved.
  */
 
-package com.example.wechat.chat.conversation.message;
+package com.example.wechat.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -77,4 +77,5 @@ public abstract class MessageContent implements Parcelable {
         this.extra = in.readString();
         this.pushContent = in.readString();
     }
+
 }

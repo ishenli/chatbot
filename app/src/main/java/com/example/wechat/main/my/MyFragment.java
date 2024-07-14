@@ -63,7 +63,7 @@ public class MyFragment extends Fragment {
     private void init() {
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         binding.setViewModel(userViewModel);
-        userViewModel.getUserInfoAsync(userViewModel.getUserId(), true)
+        userViewModel.getUserInfoByName(userViewModel.getDefaultUserName(), true)
                 .observe(getViewLifecycleOwner(), userInfoLiveDataObserver -> {
                     if (userInfoLiveDataObserver != null) {
                         userInfo = userInfoLiveDataObserver;

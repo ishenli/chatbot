@@ -5,8 +5,6 @@
 package com.example.wechat.model;
 
 
-import com.example.wechat.chat.conversation.message.Message;
-
 public class MessageVO {
     public boolean isPlaying;
     public boolean isDownloading;

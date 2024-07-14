@@ -1,10 +1,6 @@
 package com.example.wechat.chat.conversation;
 
-import static com.example.wechat.chat.inputPanel.InputPanelManager.MOTION_INPUT;
-import static com.example.wechat.chat.inputPanel.InputPanelManager.MOTION_SOFT_KEY_BOARD_INPUT;
-
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +12,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.wechat.chat.inputPanel.InputPanelManager;
-import com.example.wechat.chat.inputPanel.StageKeyboardFragment;
 import com.example.wechat.core.util.ChatKit;
-import com.example.wechat.core.widget.emotionKeyboard.EmotionFragment;
 import com.example.wechat.databinding.ConversationFragmentBinding;
 import com.example.wechat.model.Conversation;
 import com.example.wechat.model.MessageVO;
@@ -80,39 +73,10 @@ public class ConversationFragment extends Fragment {
 
 
     private void initInputPanel() {
-        InputPanelManager inputPanelManager = new InputPanelManager(getActivity(), getActivity().getSupportFragmentManager());
-        inputPanelManager.bindContentView(binding.chatMessageBody)
-                .bindInputEditText(binding.chatEditText)
-                .bindMorePanelView(binding.fragmentKeyboardContainer)
-                .bindListView(binding.recyclerView)
-                .bindMotionBtn(binding.chatEmoBtn, new InputPanelManager.OnMotionClickListenerCallback() {
-                    @Override
-                    public void onMotionClick(int motionClickState) {
-                        Log.d("voiceClickState", "voiceClickState: " + motionClickState);
-                        switch (motionClickState) {
-                            case MOTION_SOFT_KEY_BOARD_INPUT:
-                                // 软键盘输入状态
-//                                Toast.makeText(ChatActivity.this, "表情", Toast.LENGTH_SHORT).show();
-                                break;
-                            case MOTION_INPUT:
-                                // 录音状态
-//                                Toast.makeText(ChatActivity.this, "键盘", Toast.LENGTH_SHORT).show();
-                                break;
-                        }
-                    }
-                })
-                .bindVoiceBtn(binding.chatVoiceBtn, new InputPanelManager.OnVoiceClickListenerCallback() {
-                    @Override
-                    public void onVoiceClick(int voiceClickState) {
-                        Log.d("voiceClickState", "voiceClickState: " + voiceClickState);
-//                        Toast.makeText(ChatActivity.this, voiceClickState, Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .bindMoreBottom(binding.chatAddBtn)
-                .bindSendBtn(binding.sendButton)
-                .bindInputEditText(binding.chatEditText)
-                .bindMoreInputFragment(new StageKeyboardFragment())
-                .bindMotionInputFragment(new EmotionFragment(getActivity()));
+        ConversationInputPanel conversationInputPanel = new ConversationInputPanel(binding, getActivity());
+        conversationInputPanel.init();
+        conversationInputPanel.setUpConversation(conversation, targetUser);
+
     }
 
     public void setupConversation(Conversation conversation, String title, long focusMessageId, String target, boolean isJoinedChatRoom) {

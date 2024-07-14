@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_hover_gray"
     android:orientation="vertical" android:paddingTop="30dp">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/bg_hover_gray"
-        android:elevation="1dp"
-        tools:ignore="MissingConstraints" />
+    <include layout="@layout/toolbar" />
 
     <FrameLayout
         android:id="@+id/containerFrameLayout"

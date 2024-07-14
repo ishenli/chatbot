@@ -37,6 +37,9 @@ android {
 dependencies {
     implementation libs.core
 
+    implementation libs.lombok
+    annotationProcessor libs.lombok
+
     // room
     def room_version = "2.6.1"
     annotationProcessor "androidx.room:room-compiler:$room_version"

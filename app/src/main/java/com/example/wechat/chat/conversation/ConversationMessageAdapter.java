@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wechat.R;
-import com.example.wechat.chat.conversation.message.Message;
+import com.example.wechat.model.Message;
 import com.example.wechat.chat.conversation.message.viewholder.MessageContentViewHolder;
 import com.example.wechat.chat.conversation.message.viewholder.MessageViewHolderManager;
 import com.example.wechat.chat.conversation.message.viewholder.NormalMessageContentViewHolder;

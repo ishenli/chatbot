@@ -7,8 +7,6 @@ package com.example.wechat.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.example.wechat.chat.conversation.message.Message;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 

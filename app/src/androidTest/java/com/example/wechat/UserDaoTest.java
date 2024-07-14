@@ -4,13 +4,14 @@ import static org.junit.Assert.assertEquals;
 
 import android.content.Context;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.example.wechat.repository.dao.UserDao;
 import com.example.wechat.repository.database.AppDatabase;
-import com.example.wechat.repository.entity.User;
+import com.example.wechat.repository.entity.UserEntity;
 
 import org.junit.After;
 import org.junit.Before;
@@ -43,25 +44,25 @@ public class UserDaoTest {
 
     @Test
     public void insertAndGetUser() throws Exception {
-        User user = new User();
+        UserEntity user = new UserEntity();
         user.setNickname("John Doe");
         userDao.insert(user);
-        List<User> users = userDao.getAllUsers();
-        assertEquals(users.get(0).getNickname(), "John Doe");
+        LiveData<List<UserEntity>> users = userDao.getAllUsers();
+        assertEquals(users.getValue().get(0).getNickname(), "John Doe");
     }
 
     @Test
     public void getAllUsers() throws Exception {
-        User user1 = new User();
+        UserEntity user1 = new UserEntity();
         user1.setNickname("John Doe");
         userDao.insert(user1);
 
-        User user2 = new User();
+        UserEntity user2 = new UserEntity();
         user2.setNickname("Jane Doe");
         userDao.insert(user2);
 
-        List<User> users = userDao.getAllUsers();
-        assertEquals(users.size(), 2);
+        LiveData<List<UserEntity>> users = userDao.getAllUsers();
+        assertEquals(users.getValue().size(), 2);
     }
 
 //    @Test

@@ -1,4 +1,4 @@
-package com.example.wechat.chat.conversation.message;
+package com.example.wechat.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 
 import com.example.wechat.chat.conversation.message.core.MessageDirection;
 import com.example.wechat.chat.conversation.message.core.MessageStatus;
-import com.example.wechat.model.Conversation;
 
 public class Message implements Parcelable {
 

@@ -4,7 +4,7 @@ import android.util.Log;
 import android.util.SparseArray;
 
 import com.example.wechat.R;
-import com.example.wechat.chat.conversation.message.MessageContent;
+import com.example.wechat.model.MessageContent;
 import com.example.wechat.chat.conversation.message.core.ContentTag;
 import com.example.wechat.core.annotation.MessageContentType;
 

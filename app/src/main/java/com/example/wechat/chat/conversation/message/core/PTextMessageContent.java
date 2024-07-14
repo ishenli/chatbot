@@ -4,7 +4,7 @@ import static com.example.wechat.chat.conversation.message.core.MessageContentTy
 
 import android.os.Parcel;
 
-import com.example.wechat.chat.conversation.message.Message;
+import com.example.wechat.model.Message;
 
 @ContentTag(type = ContentType_P_Text, flag = PersistFlag.Persist)
 public class PTextMessageContent extends TextMessageContent {

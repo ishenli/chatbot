@@ -5,15 +5,21 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.room.migration.Migration;
-import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.wechat.repository.dao.ConversationDao;
+import com.example.wechat.repository.dao.MessageDao;
 import com.example.wechat.repository.dao.UserDao;
-import com.example.wechat.repository.entity.User;
+import com.example.wechat.repository.entity.ConversationEntity;
+import com.example.wechat.repository.entity.ConversationWithUserEntity;
+import com.example.wechat.repository.entity.MessageContentEntity;
+import com.example.wechat.repository.entity.MessageEntity;
+import com.example.wechat.repository.entity.UserEntity;
 
-@Database(version = 2, entities = {User.class})
+@Database(version = 1, entities = {UserEntity.class, MessageEntity.class, MessageContentEntity.class, ConversationEntity.class, ConversationWithUserEntity.class})
 public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDao userDao();
+    public abstract MessageDao messageDao();
+    public abstract ConversationDao conversationDao();
 
     private static AppDatabase INSTANCE;
     public static AppDatabase getDatabase(Context context) {
@@ -23,13 +29,7 @@ public abstract class AppDatabase extends RoomDatabase {
         INSTANCE = Room.databaseBuilder(
                 context.getApplicationContext(),
                 AppDatabase.class,
-                "wechat.db")
-                .addMigrations(new Migration(1, 2) {
-                    @Override public void migrate(SupportSQLiteDatabase database) {
-                        database.execSQL("ALTER TABLE user_table ADD COLUMN name TEXT");
-                    }
-                })
-//                .setTransactionExecutor(Executors.newSingleThreadExecutor())
+                "wechatV2.db")
                 .build();
         return INSTANCE;
     }

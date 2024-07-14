@@ -1,5 +1,7 @@
 package com.example.wechat.main.home.chat.chatList;
 
+import static com.example.wechat.user.UserUtil.getRandomAvatar;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -26,14 +28,6 @@ public class ChatListItemVO {
         int arraySize = 30; // 假设我们要生成一个包含10个ChatListItemVO对象的数组
         ArrayList<ChatListItemVO> persons = new ArrayList<>(arraySize);
         Random random = new Random();
-        ArrayList<String> list = new ArrayList<>();
-        list.add("https://webimg.maibaapp.com/content/img/avatars/20160921/22/52/32359.jpg");
-        list.add("https://webimg.maibaapp.com/content/img/avatars/20183904/11/39/51999.jpeg");
-        list.add("https://webimg.maibaapp.com/content/img/avatars/20161409/22/14/47401.jpg");
-        list.add("https://webimg.maibaapp.com/content/img/avatars/20170325/17/03/33267.jpg");
-        list.add("https://webimg.maibaapp.com/content/img/avatars/20160901/20/10/11682.jpg");
-        list.add("https://webimg.maibaapp.com/content/img/avatars/20164508/18/45/09486.jpg");
-        list.add("https://himg.bdimg.com/sys/portrait/item/public.1.cd7083db.YCCdYhAb3c_HTkJ5oKEIuw.jpg");
         for (int i = 0; i < arraySize; i++) {
             // 随机生成5到20之间的整数作为名字的长度
             int nameLength = random.nextInt(30) + 5; // nextInt(16)生成0-15，加上5变为5-20
@@ -53,7 +47,7 @@ public class ChatListItemVO {
             }
             String name = nameBuilder2.toString() + i;
             String message = nameBuilder.toString();
-            String avatar = list.get(nameLength2);
+            String avatar = getRandomAvatar();
             ChatListItemVO person = new ChatListItemVO(name, message, avatar);
             persons.add(person);
         }

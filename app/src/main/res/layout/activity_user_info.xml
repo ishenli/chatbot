@@ -104,7 +104,7 @@
 
         <View style="@style/Line" />
 
-            <com.example.wechat.core.widget.OptionItemView
+        <com.example.wechat.core.widget.OptionItemView
                 android:id="@+id/aliasOptionItemView"
                 style="@style/OptionItem"
                 android:background="@drawable/selector_common_item"
@@ -162,11 +162,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:orientation="vertical"
-            android:visibility="gone"
+            android:visibility="visible"
             tools:visibility="visible">
-
             <View style="@style/Line" />
-
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -187,8 +185,6 @@
             </FrameLayout>
 
         </LinearLayout>
-
-        <View style="@style/Line" />
 
         <FrameLayout
             android:id="@+id/voipChatButton"

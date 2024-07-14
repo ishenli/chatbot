@@ -14,8 +14,6 @@ import com.example.wechat.core.BaseActivity;
 import com.example.wechat.databinding.ActivityChatBinding;
 import com.example.wechat.model.Conversation;
 
-import java.util.Objects;
-
 public class ChatActivity extends BaseActivity {
     private ActivityChatBinding binding;
     private ConversationFragment conversationFragment;
@@ -23,18 +21,29 @@ public class ChatActivity extends BaseActivity {
     private boolean isInitialized;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void beforeViews() {
         binding = ActivityChatBinding.inflate(getLayoutInflater());
+    }
+
+    @Override
+    protected String toolbarTitle() {
+        Intent intent = getIntent();
+        String conversationTitle = intent.getStringExtra("conversationTitle");
+        return conversationTitle;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
     @Override
     protected void bindViews() {
-        setSupportActionBar(binding.toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true); // 设置返回按钮可见
-        getSupportActionBar().setDisplayShowHomeEnabled(true); // 设置为默认的向上导航图标
-        // 可选：设置标题
-        getSupportActionBar().setTitle("Your Activity Title");
+        super.bindViews();
+//        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true); // 设置返回按钮可见
+//        getSupportActionBar().setDisplayShowHomeEnabled(true); // 设置为默认的向上导航图标
+//        // 可选：设置标题
+//        getSupportActionBar().setTitle("Your Activity Title");
     }
 
     @Override
