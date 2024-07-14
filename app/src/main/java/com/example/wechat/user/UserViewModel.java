@@ -30,7 +30,7 @@ public class UserViewModel extends ViewModel {
         return ChatApi.getUserId();
     }
 
-    public LiveData<UserInfo> getUserInfoByName(String name, boolean b) {
+    public LiveData<UserInfo> getUserInfoByName(String name) {
         LiveData<UserEntity> user = ChatApi.getUserInfoByName(name);
         user.observeForever(user1 -> {
             if (user1 == null) {

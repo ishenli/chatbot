@@ -162,14 +162,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:orientation="vertical"
-            android:visibility="visible"
+            android:visibility="gone"
             tools:visibility="visible">
             <View style="@style/Line" />
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/selector_common_item">
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -181,9 +180,8 @@
                     android:textColor="@color/color_primary"
                     android:textSize="16sp"
                     android:textStyle="bold" />
-
             </FrameLayout>
-
+            <View style="@style/Line" />
         </LinearLayout>
 
         <FrameLayout

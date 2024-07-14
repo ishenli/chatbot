@@ -25,7 +25,7 @@ public class MyApplication extends Application {
                 handleUncaughtException(t, e);
             }
         });
-
+        
         ChatApi.init(this);
         ChatKit chatKit = ChatKit.getChatKit();
         chatKit.init(this);

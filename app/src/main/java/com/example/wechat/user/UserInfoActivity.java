@@ -8,8 +8,10 @@ import android.widget.TextView;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.wechat.R;
+import com.example.wechat.chat.ChatActivity;
 import com.example.wechat.core.BaseActivity;
 import com.example.wechat.databinding.ActivityUserInfoBinding;
+import com.example.wechat.model.Conversation;
 import com.example.wechat.model.UserInfo;
 
 public class UserInfoActivity extends BaseActivity {
@@ -33,6 +35,16 @@ public class UserInfoActivity extends BaseActivity {
         super.bindEvents();
         titleTextView = findViewById(R.id.titleTextView);
         binding.aliasOptionItemView.setOnClickListener( v -> goToChangeName());
+        binding.chatButton.setOnClickListener(v -> chat());
+    }
+
+    private void chat() {
+        Intent intent = new Intent(this, ChatActivity.class);
+        Conversation conversation = new Conversation(Conversation.ConversationType.Single, userInfo.uid, 0);
+        intent.putExtra("conversation", conversation);
+        intent.putExtra("conversationTitle", userInfo.displayName);
+        startActivity(intent);
+        finish();
     }
 
     private void goToChangeName() {
@@ -68,6 +80,20 @@ public class UserInfoActivity extends BaseActivity {
         if (userInfo != null) {
             setUserInfo(userInfo);
         }
+
+        String currentUserId = userViewModel.getUserId();
+        if (currentUserId.equals(userInfo.uid)) {
+        // 表明是当前用户
+            binding.chatButton.setVisibility(View.GONE);
+            binding.voipChatButton.setVisibility(View.GONE);
+            binding.inviteButton.setVisibility(View.GONE);
+            binding.aliasOptionItemView.setVisibility(View.VISIBLE);
+        } else {
+            binding.chatButton.setVisibility(View.VISIBLE);
+            binding.voipChatButton.setVisibility(View.VISIBLE);
+            binding.inviteButton.setVisibility(View.GONE);
+        }
+
     }
 
     public void setUserInfo(UserInfo userInfo) {
