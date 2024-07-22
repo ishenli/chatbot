@@ -6,7 +6,7 @@
     <data>
         <variable
             name="assistantItemView"
-            type="com.example.wechat.model.UserInfo" />
+            type="com.workdance.chatbot.model.Assistant" />
     </data>
     <LinearLayout
         android:id="@+id/chatViewItem"
@@ -26,7 +26,7 @@
             android:layout_height="54dp"
             android:contentDescription="TODO"
             android:scaleType="centerCrop"
-            app:imageUrl="@{assistantItemView.portrait}"
+            app:imageUrl="@{assistantItemView.logo}"
             android:background="@drawable/bg_corners"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:height="22dp"
-                android:text="@{assistantItemView.displayName}"
+                android:text="@{assistantItemView.name}"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="16sp"
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:height="18dp"
-                android:text="@{assistantItemView.name}"
+                android:text="@{assistantItemView.description}"
                 android:textAlignment="textStart"
                 android:textColor="@color/gray_primary"
                 android:textSize="14sp"

@@ -14,18 +14,19 @@
     <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
+        android:usesCleartextTraffic="true"
         android:name=".MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:networkSecurityConfig="@xml/network_security_config"
         tools:targetApi="31">
         <activity
-            android:name=".main.MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
@@ -33,11 +34,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".chat.ChatActivity" android:exported="true" android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".EmotionActivity" android:exported="true"/>
-        <activity android:name=".user.UserInfoActivity" android:exported="true" android:label="用户信息"/>
-        <activity android:name=".user.ChangeMyNameActivity" android:exported="true"/>
-        <activity android:name=".user.UserInfoCreateActivity" android:exported="true"/>
+        <activity android:name=".ui.chat.ChatActivity" android:exported="true" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".ui.EmotionActivity" android:exported="true"/>
+        <activity android:name=".ui.user.UserInfoActivity" android:exported="true" android:label="用户信息"/>
+        <activity android:name=".ui.user.ChangeMyNameActivity" android:exported="true"/>
+        <activity android:name=".ui.user.UserInfoCreateActivity" android:exported="true"/>
     </application>
 
 </manifest>

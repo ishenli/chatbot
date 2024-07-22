@@ -6,7 +6,7 @@
     <data>
         <variable
             name="chatItemView"
-            type="com.example.wechat.main.home.chat.chatList.ChatListItemVO" />
+            type="com.workdance.chatbot.ui.chat.conversationlist.ConversationListItemVO" />
     </data>
     <LinearLayout
         android:id="@+id/chatViewItem"

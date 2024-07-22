@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.wechat.user.UserViewModel" />
+            type="com.workdance.chatbot.ui.user.UserViewModel" />
     </data>
 
     <LinearLayout
@@ -32,7 +32,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:scaleType="centerCrop"
-                app:imageUrl="@{viewModel.userInfo.portrait}"
+                app:imageUrl="@{viewModel.mUserInfo.portrait}"
                 android:src="@mipmap/avatar_def" />
 
             <LinearLayout
@@ -54,7 +54,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:gravity="center"
-                        android:text="@{viewModel.userInfo.displayName}"
+                        android:text="@{viewModel.mUserInfo.displayName}"
                         android:singleLine="true"
                         android:textColor="@color/black"
                         android:textSize="20sp"
@@ -75,7 +75,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
-                    android:text="@{viewModel.userInfo.name}"
+                    android:text="@{viewModel.mUserInfo.name}"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
@@ -104,7 +104,7 @@
 
         <View style="@style/Line" />
 
-        <com.example.wechat.core.widget.OptionItemView
+        <com.workdance.chatbot.core.widget.OptionItemView
                 android:id="@+id/aliasOptionItemView"
                 style="@style/OptionItem"
                 android:background="@drawable/selector_common_item"

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.wechat.user.UserViewModel" />
+            type="com.workdance.chatbot.ui.user.UserViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,7 +42,7 @@
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:background="@drawable/bg_corners"
-                        app:imageUrl="@{viewModel.userInfo.portrait}"
+                        app:imageUrl="@{viewModel.mUserInfo.portrait}"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="MissingConstraints" />
@@ -59,7 +59,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="15dp"
                             android:height="24dp"
-                            android:text="@{viewModel.userInfo.displayName}"
+                            android:text="@{viewModel.mUserInfo.displayName}"
                             android:textAlignment="textStart"
                             android:textColor="@color/black"
                             android:textSize="18sp"
@@ -76,7 +76,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="15dp"
                             android:height="18dp"
-                            android:text="@{viewModel.userInfo.name}"
+                            android:text="@{viewModel.mUserInfo.name}"
                             android:textAlignment="textStart"
                             android:textColor="@color/gray_primary"
                             android:textSize="14sp"

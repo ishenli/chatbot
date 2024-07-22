@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.wechat.main.home.HomeFragment"
+        android:name="com.workdance.chatbot.ui.main.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.wechat.main.dashboard.DashboardFragment"
+        android:name="com.workdance.chatbot.ui.main.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.wechat.main.notifications.NotificationsFragment"
+        android:name="com.workdance.chatbot.ui.main.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
         android:id="@+id/navigation_my"
-        android:name="com.example.wechat.main.my.MyFragment"
+        android:name="com.workdance.chatbot.ui.main.my.MyFragment"
         android:label="@string/title_my"
         tools:layout="@layout/fragment_my" />
 </navigation>

@@ -27,6 +27,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "wechat"
+rootProject.name = "chatbot"
 include ':app'
 include ':emojilibrary'

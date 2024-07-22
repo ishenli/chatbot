@@ -1,13 +1,19 @@
 ## 说明
 
-基于安卓最新的 jetpack 技术栈实现的一个仿微信的个人助理应用，开发的语言是 Java。
+基于安卓最新的 jetpack 技术栈实现的个人助理应用，开发的语言是 Java。
 
 ### 相关技术
 + MVVM
 + Material Design 3
 + LiveData
 + Room
++ Retrofit2
 
+
+### 相关应用
+
++ [chatbot 的 web 服务](https://github.com/workdance/chatbot-web)
++ [chatbot 的 ai 应用](https://github.com/workdance/chatbot-ai)
 
 ### 参考视觉稿
 
@@ -26,5 +32,12 @@ https://www.figma.com/design/cvpC33GRSIFRU1dD6QrCp4/%E5%BE%AE%E4%BF%A18.0%EF%BC%
 `distributionUrl=file\:/${本地路径}/gradle-8.3-bin.zip`
 
 
-### 协议
-MIT
+### 致谢
+
++ [wildfirechat提供的聊天界面功能实现](https://github.com/wildfirechat/android-chat?tab=readme-ov-file)
+
+
+
+### License
+
+项目基于 [MIT 协议](./LICENSE)，请自由地享受和参与开源。

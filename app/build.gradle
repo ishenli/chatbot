@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    namespace 'com.example.wechat'
+    namespace 'com.workdance.chatbot'
     compileSdk 34
     dataBinding {
         enabled = true
     }
     defaultConfig {
-        applicationId "com.example.wechat"
+        applicationId "com.workdance.chatbot"
         minSdk 29
         targetSdk 34
         versionCode 1
@@ -35,8 +35,11 @@ android {
 }
 
 dependencies {
-    implementation libs.core
 
+    implementation libs.retrofit
+    implementation libs.retrofit2.converter.gson
+    implementation libs.gson
+    implementation libs.core
     implementation libs.lombok
     annotationProcessor libs.lombok
 
