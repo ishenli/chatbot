@@ -19,7 +19,7 @@
         android:paddingTop="12dp"
         android:paddingRight="16dp"
         android:paddingBottom="12dp"
-        android:text="text message content"
+        android:text="text receive default"
         android:textColorLink="#3655bf"
         android:textSize="16sp" />
 

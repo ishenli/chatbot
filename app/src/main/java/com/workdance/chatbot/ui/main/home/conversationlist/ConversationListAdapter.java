@@ -1,4 +1,4 @@
-package com.workdance.chatbot.ui.chat.conversationlist;
+package com.workdance.chatbot.ui.main.home.conversationlist;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;

@@ -51,7 +51,7 @@ public class ChatApi {
     }
 
     public static String getUserId() {
-        return currentUser.uid;
+        return getDefaultUser().uid;
     }
 
     /**
@@ -95,7 +95,6 @@ public class ChatApi {
                 msg.direction = MessageDirection.direction(messageDO.getDirection());
                 msg.status = MessageStatus.status(messageDO.getStatus());
                 msg.conversation = conversation;
-                msg.messageUid = messageDO.getMessageId();
                 MessageVO messageVO = new MessageVO(msg);
                 messages.add(messageVO);
             }

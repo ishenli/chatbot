@@ -1,11 +1,14 @@
-package com.workdance.chatbot.api.dto;
+package com.workdance.chatbot.model;
+
+import java.util.List;
 
 import lombok.Data;
 
 @Data
-public class ChatDetailRep {
+public class Chat {
     private String chatId;
     private String chatName;
     private String avatar;
     private String gmtCreate;
+    private List<Brain> brainId;
 }

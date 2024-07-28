@@ -1,5 +1,6 @@
 package com.workdance.chatbot.ui.chat.conversation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -8,19 +9,27 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.workdance.chatbot.api.ChatClient;
+import com.workdance.chatbot.core.BaseFragment;
 import com.workdance.chatbot.core.util.ChatKit;
 import com.workdance.chatbot.databinding.ConversationFragmentBinding;
+import com.workdance.chatbot.model.Brain;
 import com.workdance.chatbot.model.Conversation;
+import com.workdance.chatbot.model.ConversationInfo;
+import com.workdance.chatbot.model.UserInfo;
+import com.workdance.chatbot.ui.AppStatusViewModel;
+import com.workdance.chatbot.ui.user.UserInfoActivity;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class ConversationFragment extends Fragment {
+public class ConversationFragment extends BaseFragment implements ConversationMessageAdapter.OnPortraitClickListener {
     private static final String TAG = "convFragment";
     private static final int MESSAGE_LOAD_COUNT_PER_TIME = 20;
     private static final int MESSAGE_LOAD_AROUND = 10;
@@ -39,10 +48,16 @@ public class ConversationFragment extends Fragment {
     private boolean moveToBottom = true;
     private String targetUser;
     private boolean loadingNewMessage;
+    private MessageViewModel messageViewModel;
+    private AppStatusViewModel appStatusViewModel;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initViewModel() {
+        // 数据准备
+        appStatusViewModel = getApplicationScopeViewModel(AppStatusViewModel.class);
+        conversationViewModel = getActivityScopeViewModel(ConversationViewModel.class);
+        messageViewModel = getFragmentScopeViewModel(MessageViewModel.class);
+        conversationViewModel.clearConversationMessageLiveData().observeForever(clearConversationMessageObserver);
     }
 
     @Nullable
@@ -50,16 +65,8 @@ public class ConversationFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = ConversationFragmentBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-        bindEvents(view);
-        initView();
-        return view;
-    }
-
-    private void bindEvents(View view) {
-    }
-
-    private void initView() {
         adapter = new ConversationMessageAdapter(this);
+        adapter.setOnPortraitClickListener(this);
         layoutManager = new LinearLayoutManager(getActivity());
         binding.recyclerView.setLayoutManager(layoutManager);
         binding.recyclerView.setAdapter(adapter);
@@ -83,46 +90,80 @@ public class ConversationFragment extends Fragment {
                 }
             }
         });
-
-//        // 输入面板
-//        this.initInputPanel();
-
-        // 数据准备
-        conversationViewModel = ChatKit.getAppScopeViewModel(ConversationViewModel.class);
-        conversationViewModel.clearConversationMessageLiveData().observeForever(clearConversationMessageObserver);
+        this.initInputPanel();
+        return view;
     }
-
-    private void loadMoreNewMessages() {
-        loadingNewMessage = true;
-        conversationViewModel.loadNewMessages(conversation, targetUser).observe(this, messages -> {
-            loadingNewMessage = false;
-            if (messages != null && !messages.isEmpty()) {
-                adapter.addMessagesAtTail(messages);
-            }
-        });
-    }
-
 
     private void initInputPanel() {
         ConversationInputPanel conversationInputPanel = new ConversationInputPanel(binding, getActivity());
         conversationInputPanel.init();
-        conversationInputPanel.setupConversation(conversation, targetUser);
+        conversationInputPanel.setOnSendSubmitClickListener(new ConversationInputPanel.onSendSubmitClickListener() {
+            @Override
+            public void onSendSubmitClick(String txtContent) {
+                // 处理群聊的场景
+                if (conversation.type == Conversation.ConversationType.Group) {
 
+                } else {
+                    messageViewModel.sendTextMsg(conversation, toUsers(), txtContent).observe(getViewLifecycleOwner(), message -> {
+                        if (message != null) {
+                            adapter.addNewMessage(message);
+                            String avatar = getReceiverAvatar(toUsers());
+                            adapter.showStreamLoading("AI 正在思考中...", avatar);
+                            binding.recyclerView.scrollToPosition(adapter.getItemCount() - 1);
+                            // 接受 AI 的内容返回
+                            requestAIService(conversation, toUsers(), txtContent, message);
+
+                        }
+                    });
+                }
+
+            }
+        });
     }
 
-    public void setupConversation(Conversation conversation, String title, String focusMessageId, String target, boolean isJoinedChatRoom) {
+    private String getReceiverAvatar(List<String> toUsers) {
+        ConversationInfo conversationInfo = conversationViewModel.getConversationInfoLiveData().getValue();
+        String avatar = "";
+        if (conversationInfo != null && conversationInfo.getBrains() != null) {
+            if (toUsers.size() == 1) {
+                Brain brain = conversationInfo.getBrains().stream().filter(item -> item.getBrainId().equals(toUsers.get(0))).collect(Collectors.toList()).get(0);
+                avatar = brain.getLogo();
+            }
+        }
+        return avatar;
+    }
+
+    public void requestAIService(Conversation conversation, List<String> toUsers, String question, MessageVO askMessageVo) {
+        // 拿到 MessageVo 直接更新
+        String avatar = getReceiverAvatar(toUsers);
+        conversation.setTarget(toUsers.get(0));
+        messageViewModel.receiveMessage(question, avatar, conversation, askMessageVo).observe(getViewLifecycleOwner(), messageVO -> {
+            if (messageVO != null) {
+                adapter.hideStreamLoading();
+                adapter.addNewMessage(messageVO);
+                ChatKit.postTaskDelay(() -> {
+                    binding.recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
+                }, 100);
+                appStatusViewModel.setShouldRefreshHome(true);
+            }
+        });
+    }
+
+    // 程序的启动入口，activity 来调用
+    public void setupConversation(Conversation conversation, String title, String focusMessageId, boolean isJoinedChatRoom) {
         this.conversation = conversation;
         this.conversationTitle = title;
         this.initialFocusedMessageId = focusMessageId;
-        this.targetUser = target;
         setupConversation(conversation);
     }
 
     public void setupConversation(Conversation conversation) {
         // 获取 Conversation 的详情
-        conversationViewModel.getConversationInfo(conversation).observe(this, conversationInfo -> {
+        conversationViewModel.loadConversationInfo(conversation).observe(this, conversationInfo -> {
             if (conversationInfo != null) {
-                this.initInputPanel(); // 需要消费 conversation_id
+                // this.initInputPanel(); // 需要消费 conversation_id
+                // 获取 brand_id
+                targetUser = conversationInfo.getDefaultBrain().getBrainId();
             }
         });
 
@@ -136,7 +177,7 @@ public class ConversationFragment extends Fragment {
             shouldContinueLoadNewMessage = true;
             messages = conversationViewModel.loadAroundMessages(conversation, targetUser);
         } else {
-            messages = conversationViewModel.getMessages(conversation);
+            messages = conversationViewModel.loadMessages(conversation);
         }
 
         // 消息有变化，通知列表刷新
@@ -162,6 +203,16 @@ public class ConversationFragment extends Fragment {
     private void reloadMessage() {
     }
 
+    private void loadMoreNewMessages() {
+        loadingNewMessage = true;
+        conversationViewModel.loadNewMessages(conversation, targetUser).observe(this, messages -> {
+            loadingNewMessage = false;
+            if (messages != null && !messages.isEmpty()) {
+                adapter.addMessagesAtTail(messages);
+            }
+        });
+    }
+
     private Observer<Conversation> clearConversationMessageObserver = new Observer<Conversation>() {
         @Override
         public void onChanged(Conversation conversation) {
@@ -171,4 +222,26 @@ public class ConversationFragment extends Fragment {
             }
         }
     };
+
+
+    private List<String> toUsers() {
+        if (TextUtils.isEmpty(this.targetUser)) {
+            return null;
+        }
+        return Collections.singletonList(this.targetUser);
+    }
+
+    @Override
+    public void onPortraitClick(String sender) {
+        Intent intent = new Intent(getContext(), UserInfoActivity.class);
+        UserInfo userInfo = new UserInfo();
+        ChatClient.getUserInfoById(sender).observe(this, my -> {
+            userInfo.displayName = my.displayName;
+            userInfo.uid = my.uid;
+            userInfo.name = my.name;
+            userInfo.portrait = my.portrait;
+            intent.putExtra("userInfo", userInfo);
+            startActivity(intent);
+        });
+    }
 }

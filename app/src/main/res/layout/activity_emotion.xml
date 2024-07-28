@@ -6,9 +6,18 @@
     android:paddingTop="30dp"
     android:orientation="vertical">
 
-    <com.example.emojilibrary.EmotionLayout
-        android:id="@+id/emotionLayout"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="320dp"
-        tools:ignore="MissingClass" />
+        android:layout_height="wrap_content"
+        android:text="测试Ollama"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/testOllama"/>
+
+<!--    <com.example.emojilibrary.EmotionLayout-->
+<!--        android:id="@+id/emotionLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="320dp"-->
+<!--        tools:ignore="MissingClass" />-->
 </LinearLayout>

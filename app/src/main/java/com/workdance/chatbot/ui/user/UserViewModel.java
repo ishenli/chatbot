@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.workdance.chatbot.api.ChatApi;
+import com.workdance.chatbot.core.enums.ErrorCodeEnum;
 import com.workdance.chatbot.core.util.OperateResult;
 import com.workdance.chatbot.model.UserInfo;
 import com.workdance.chatbot.repository.entity.UserEntity;
@@ -26,7 +27,7 @@ public class UserViewModel extends ViewModel {
     }
 
     public String getUserId() {
-        return ChatApi.getUserId();
+        return ChatApi.getDefaultUser().uid;
     }
 
     public LiveData<UserInfo> getUserInfoByName(String name) {
@@ -96,9 +97,9 @@ public class UserViewModel extends ViewModel {
         }
 
         ChatApi.addUserInfo(userInfo).observeOn(AndroidSchedulers.mainThread()).subscribe(() -> {
-            result.setValue(new OperateResult<>(true, 0));
+            result.setValue(new OperateResult<>(true));
         }, throwable -> {
-            result.setValue(new OperateResult<>(false, 1001));
+            result.setValue(new OperateResult<>(false, ErrorCodeEnum.SYSTEM_ERROR.getErrDtlCode()));
         });
 
         return result;
@@ -108,9 +109,9 @@ public class UserViewModel extends ViewModel {
         MutableLiveData<OperateResult<Boolean>> result = new MutableLiveData<>();
         boolean success = ChatApi.updateUserInfo(userInfo);
         if (success) {
-            result.setValue(new OperateResult<>(true, 0));
+            result.setValue(new OperateResult<>(true));
         } else {
-            result.setValue(new OperateResult<>(false, 0));
+            result.setValue(new OperateResult<>(false, ErrorCodeEnum.SYSTEM_ERROR.getErrDtlCode()));
         }
         return result;
     }

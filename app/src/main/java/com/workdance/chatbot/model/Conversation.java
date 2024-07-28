@@ -8,11 +8,51 @@ import lombok.Data;
 @Data
 public class Conversation implements Parcelable {
 
+    public String id;
+
+    public ConversationType type;
+    /**
+     * 会话的对方
+     */
+    public String target;
+
+    public int line;
+
+
+
+    public Conversation() {}
+
+
     protected Conversation(Parcel in) {
         int tmpType = in.readInt();
         this.type = tmpType == -1 ? null : ConversationType.values()[tmpType];
         this.target = in.readString();
         this.line = in.readInt();
+    }
+
+    public Conversation(ConversationType type, String target, int line) {
+        this.type = type;
+        this.target = target;
+        this.line = line;
+    }
+
+    public Conversation(ConversationType type, String id) {
+        this.id = id;
+        this.type = type;
+        this.line = 0;
+    }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.type == null ? -1 : this.type.ordinal());
+        dest.writeString(this.target);
+        dest.writeInt(this.line);
     }
 
     public static final Creator<Conversation> CREATOR = new Creator<Conversation>() {
@@ -27,17 +67,6 @@ public class Conversation implements Parcelable {
         }
     };
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.type == null ? -1 : this.type.ordinal());
-        dest.writeString(this.target);
-        dest.writeInt(this.line);
-    }
 
     public enum ConversationType {
         // 单聊
@@ -91,32 +120,5 @@ public class Conversation implements Parcelable {
             return conversationType;
         }
     }
-
-    public String id;
-
-    public ConversationType type;
-
-    /**
-     * 会话的对方
-     */
-    public String target;
-
-    public int line;
-
-    public Conversation() {
-    }
-
-    public Conversation(ConversationType type, String target, int line) {
-        this.type = type;
-        this.target = target;
-        this.line = line;
-    }
-
-    public Conversation(ConversationType type, String target) {
-        this.type = type;
-        this.target = target;
-        this.line = 0;
-    }
-
 
 }

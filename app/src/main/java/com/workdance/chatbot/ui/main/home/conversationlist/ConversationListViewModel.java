@@ -1,4 +1,4 @@
-package com.workdance.chatbot.ui.chat.conversationlist;
+package com.workdance.chatbot.ui.main.home.conversationlist;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -8,19 +8,23 @@ import com.workdance.chatbot.api.ChatClient;
 import java.util.List;
 
 public class ConversationListViewModel extends ViewModel {
-    private MutableLiveData<List<ConversationListItemVO>> conversationListLiveData;
+    private MutableLiveData<List<ConversationListItemVO>> conversationListLiveData = new MutableLiveData<>();
 
-    public MutableLiveData<List<ConversationListItemVO>> conversationListLiveData() {
+    public MutableLiveData<List<ConversationListItemVO>> loadConversationList(String userId) {
         if (conversationListLiveData == null) {
             conversationListLiveData = new MutableLiveData<>();
         }
 
-        ChatClient.getConversationList().observeForever(conversationList -> {
+        ChatClient.getConversationList(userId).observeForever(conversationList -> {
             if (conversationList != null) {
                 conversationListLiveData.postValue(conversationList);
             }
         });
 
+        return conversationListLiveData;
+    }
+
+    public MutableLiveData<List<ConversationListItemVO>> conversationListLiveData() {
         return conversationListLiveData;
     }
 }

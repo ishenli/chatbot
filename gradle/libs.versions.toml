@@ -7,6 +7,7 @@ coreTesting = "2.2.0"
 coreVersion = "3.3.0"
 espressoCoreVersion = "3.4.0"
 gson = "2.10.1"
+ioNotiesMarkwonCore = "4.6.2"
 jodaTime = "2.10.8"
 junit = "4.13.2"
 junitJunit = "4.13.2"
@@ -23,6 +24,8 @@ navigationFragment = "2.6.0"
 navigationUi = "2.6.0"
 legacySupportV4 = "1.0.0"
 core = "1.6.1"
+notiesCore = "4.2"
+notiesCoreVersion = "4.6.2"
 picasso = "2.71828"
 retrofit = "2.11.0"
 roomGuava = "2.6.1"
@@ -46,11 +49,11 @@ appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "a
 junit-v113 = { module = "androidx.test.ext:junit", version.ref = "androidxJunit" }
 junit-v412 = { module = "junit:junit", version.ref = "junitJunit" }
 lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+markwon-core = { module = "io.noties.markwon:core", version.ref = "ioNotiesMarkwonCore" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
-material-dialogs-core = { module = "com.afollestad.material-dialogs:core", version.ref = "coreVersion" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
 navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationFragment" }
 navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigationUi" }

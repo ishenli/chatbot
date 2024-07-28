@@ -6,7 +6,7 @@ import android.util.SparseArray;
 import com.workdance.chatbot.R;
 import com.workdance.chatbot.ui.chat.conversation.message.core.ContentTag;
 import com.workdance.chatbot.model.MessageContent;
-import com.workdance.chatbot.core.annotation.MessageContentType;
+import com.workdance.chatbot.ui.chat.conversation.message.annotation.MessageContentType;
 
 /**
  * 用来管理各种 Message
@@ -29,6 +29,8 @@ public class MessageViewHolderManager {
 
     private void init() {
         registerMessageViewHolder(TextMessageContentViewHolder.class, R.layout.conversation_item_text_send, R.layout.conversation_item_text_receive);
+        registerMessageViewHolder(LoadingMessageContentViewHolder.class, R.layout.conversation_item_text_send, R.layout.conversation_item_text_receive);
+        registerMessageViewHolder(MarkdownMessageContentViewHolder.class, R.layout.conversation_item_text_send, R.layout.conversation_item_text_receive);
     }
 
     private void registerMessageViewHolder(Class<? extends MessageContentViewHolder> clazz, int sendLayoutRes, int receiveLayoutRes) {

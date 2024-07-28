@@ -1,4 +1,4 @@
-package com.workdance.chatbot.ui.main.dashboard.assistantList;
+package com.workdance.chatbot.ui.main.dashboard;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;

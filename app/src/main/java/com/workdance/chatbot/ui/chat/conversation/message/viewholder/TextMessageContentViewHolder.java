@@ -12,7 +12,7 @@ import com.workdance.chatbot.R;
 import com.workdance.chatbot.ui.chat.conversation.message.core.TextMessageContent;
 import com.workdance.chatbot.ui.chat.conversation.ConversationFragment;
 import com.workdance.chatbot.ui.chat.conversation.message.core.PTextMessageContent;
-import com.workdance.chatbot.core.annotation.MessageContentType;
+import com.workdance.chatbot.ui.chat.conversation.message.annotation.MessageContentType;
 import com.workdance.chatbot.ui.chat.conversation.MessageVO;
 
 @MessageContentType(value = {

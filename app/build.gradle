@@ -60,13 +60,17 @@ dependencies {
     androidTestImplementation libs.espresso.core.v340
     testImplementation libs.core.testing
 
+    implementation libs.markwon.core
+
+
+    // 基础库
+    implementation 'com.github.li-xiaojun:XPopup:2.10.0'
     implementation platform("com.mpaas.android:$mpaas_artifact:$mpaas_baseline")
     implementation libs.glide
     implementation libs.joda.time
     implementation libs.legacy.support.v4
     annotationProcessor libs.compiler
     implementation libs.picasso
-    implementation libs.material.dialogs.core
     implementation libs.appcompat
     implementation libs.material
     implementation libs.constraintlayout

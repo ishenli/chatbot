@@ -20,6 +20,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
         maven {
             url 'https://mvn.cloud.alipay.com/nexus/content/repositories/open/'
             name 'alipay'

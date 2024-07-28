@@ -39,6 +39,7 @@
         <activity android:name=".ui.user.UserInfoActivity" android:exported="true" android:label="用户信息"/>
         <activity android:name=".ui.user.ChangeMyNameActivity" android:exported="true"/>
         <activity android:name=".ui.user.UserInfoCreateActivity" android:exported="true"/>
+        <activity android:name=".ui.assistant.AssistantInfoActivity" android:exported="true"/>
     </application>
 
 </manifest>

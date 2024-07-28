@@ -35,7 +35,8 @@ https://www.figma.com/design/cvpC33GRSIFRU1dD6QrCp4/%E5%BE%AE%E4%BF%A18.0%EF%BC%
 ### 致谢
 
 + [wildfirechat提供的聊天界面功能实现](https://github.com/wildfirechat/android-chat?tab=readme-ov-file)
-
++ [Jetpack-MVVM-Best-Practice](https://github.com/KunMinX/Jetpack-MVVM-Best-Practice)
++ [XPopup](https://github.com/junixapp/XPopup)
 
 
 ### License

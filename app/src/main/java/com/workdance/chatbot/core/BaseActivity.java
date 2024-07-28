@@ -12,18 +12,24 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import androidx.annotation.MenuRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModel;
 
 import com.workdance.chatbot.R;
+import com.workdance.chatbot.core.mvi.ViewModelScope;
 
 import java.util.Objects;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
-    Toolbar toolbar;
-    TextView toolBarText;
+    private final ViewModelScope mViewModelScope = new ViewModelScope();
+
+    public Toolbar toolbar;
+    public TextView toolBarText;
+    protected boolean disableBaseBar;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -120,7 +126,15 @@ public abstract class BaseActivity extends AppCompatActivity {
         hideInputMethod();
     }
 
+
+    protected boolean disableBaseBar() {
+        return false;
+    }
+
     private void initToolBar() {
+        if (disableBaseBar()) {
+            return;
+        }
         setSupportActionBar(toolbar);
         toolbar.getContext().setTheme(R.style.AppTheme_LightAppbar);
         if (toolbarTitle() != null) {
@@ -187,5 +201,14 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected boolean showHomeMenuItem() {
         return true;
+    }
+
+
+    protected <T extends ViewModel> T getActivityScopeViewModel(@NonNull Class<T> modelClass) {
+        return mViewModelScope.getActivityScopeViewModel(this, modelClass);
+    }
+
+    protected <T extends ViewModel> T getApplicationScopeViewModel(@NonNull Class<T> modelClass) {
+        return mViewModelScope.getApplicationScopeViewModel(modelClass);
     }
 }

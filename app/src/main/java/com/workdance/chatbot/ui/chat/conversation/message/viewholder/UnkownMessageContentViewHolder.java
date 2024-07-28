@@ -13,7 +13,7 @@ import com.workdance.chatbot.R;
 import com.workdance.chatbot.ui.chat.conversation.ConversationFragment;
 import com.workdance.chatbot.ui.chat.conversation.MessageVO;
 import com.workdance.chatbot.ui.chat.conversation.message.core.UnknownMessageContent;
-import com.workdance.chatbot.core.annotation.MessageContentType;
+import com.workdance.chatbot.ui.chat.conversation.message.annotation.MessageContentType;
 
 
 @MessageContentType(UnknownMessageContent.class)

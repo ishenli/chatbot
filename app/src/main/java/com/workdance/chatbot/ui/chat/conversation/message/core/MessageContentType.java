@@ -30,6 +30,8 @@ public interface MessageContentType {
     // 消息未能送达
     int ContentType_NOT_DELIVERED = 16;
 
+    int ContentType_Loading = 17;
+    int ContentType_Markdown = 18;
 
     // 21, 23，24内部使用
     int ContentType_Dumy1 = 21;

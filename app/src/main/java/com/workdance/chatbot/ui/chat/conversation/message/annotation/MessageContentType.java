@@ -2,7 +2,7 @@
  * Copyright (c) 2020 WildFireChat. All rights reserved.
  */
 
-package com.workdance.chatbot.core.annotation;
+package com.workdance.chatbot.ui.chat.conversation.message.annotation;
 
 import com.workdance.chatbot.model.MessageContent;
 

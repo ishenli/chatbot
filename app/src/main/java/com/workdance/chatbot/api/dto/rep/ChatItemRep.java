@@ -1,4 +1,8 @@
-package com.workdance.chatbot.api.dto;
+package com.workdance.chatbot.api.dto.rep;
+
+import com.workdance.chatbot.model.Brain;
+
+import java.util.List;
 
 import lombok.Data;
 
@@ -10,4 +14,5 @@ public class ChatItemRep {
     private String messageGmtCreate;
     private String chatGmtCreate;
     private String avatar;
+    private List<Brain> brains;
 }

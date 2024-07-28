@@ -1,7 +1,5 @@
 package com.workdance.chatbot.api.adapter;
 
-import android.annotation.SuppressLint;
-
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
@@ -15,7 +13,6 @@ import java.util.Date;
 public class DateTypeAdapter extends TypeAdapter<Date> {
 
     private static final String DATE_FORMAT = "YYYY-MM-DD'T'hh:mm:ss.sss±hh:mm";
-    @SuppressLint("SimpleDateFormat")
     private SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
 
     @Override

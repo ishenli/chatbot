@@ -13,7 +13,7 @@ import lombok.Data;
 @Data
 public class Message implements Parcelable {
 
-    public String messageId;
+    private String messageId;
     public Conversation conversation;
     public String sender;
     public long serverTime;
@@ -21,8 +21,8 @@ public class Message implements Parcelable {
     public MessageContent content;
     public MessageDirection direction;
     public MessageStatus status;
-    public String messageUid;
     public String localExtra;
+    public String avatar;
 
     public Message() {}
 
@@ -36,7 +36,6 @@ public class Message implements Parcelable {
         this.direction = tmpDirection == -1 ? null : MessageDirection.values()[tmpDirection];
         int tmpStatus = in.readInt();
         this.status = tmpStatus == -1 ? null : MessageStatus.values()[tmpStatus];
-        this.messageUid = in.readString();
         this.serverTime = in.readLong();
         this.localExtra = in.readString();
     }
@@ -48,7 +47,6 @@ public class Message implements Parcelable {
         this.content = msg.content;
         this.direction = msg.direction;
         this.status = msg.status;
-        this.messageUid = msg.messageUid;
         this.serverTime = msg.serverTime;
         this.localExtra = msg.localExtra;
     }
@@ -72,5 +70,12 @@ public class Message implements Parcelable {
 
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
+    }
+
+    public String getUniqueMessageId() {
+        if (messageId == null) {
+            return null;
+        }
+        return messageId + ":" + direction.value();
     }
 }

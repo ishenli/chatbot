@@ -9,36 +9,32 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.workdance.chatbot.core.BaseFragment;
 import com.workdance.chatbot.databinding.FragmentDashboardBinding;
-import com.workdance.chatbot.ui.main.dashboard.assistantList.AssistantListAdapter;
-import com.workdance.chatbot.ui.main.dashboard.assistantList.AssistantListViewModel;
 import com.workdance.chatbot.model.Assistant;
 import com.workdance.chatbot.model.UserInfo;
-import com.workdance.chatbot.ui.user.UserInfoActivity;
-import com.workdance.chatbot.ui.user.UserViewModel;
+import com.workdance.chatbot.ui.assistant.AssistantInfoActivity;
 
-public class DashboardFragment extends Fragment {
+public class DashboardFragment extends BaseFragment {
 
     private FragmentDashboardBinding binding;
-    private UserViewModel userViewModel;
     private AssistantListAdapter myAdapter;
     private AssistantListViewModel assistantListViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-
-        assistantListViewModel = new ViewModelProvider(this).get(AssistantListViewModel.class);
 
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        return root;
+        return binding.getRoot();
+    }
+
+    @Override
+    protected void initViewModel() {
+        assistantListViewModel = getActivityScopeViewModel(AssistantListViewModel.class);
     }
 
     @Override
@@ -53,16 +49,13 @@ public class DashboardFragment extends Fragment {
 
         recyclerView.setLayoutManager( new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setPadding(0, 0, 0, 0);
-
-        String userId = userViewModel.getUserId();
-
-        assistantListViewModel.getAllAssistant(userId).observe(getViewLifecycleOwner(), assistants -> {
+        assistantListViewModel.assistantList.observe(getViewLifecycleOwner(), assistants -> {
             if (myAdapter == null) {
                 myAdapter = new AssistantListAdapter(assistants, new AssistantListAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(Assistant item) {
                         // startActivity useInfoActivity
-                        Intent intent = new Intent(getContext(), UserInfoActivity.class);
+                        Intent intent = new Intent(getContext(), AssistantInfoActivity.class);
                         UserInfo userInfo = new UserInfo();
                         userInfo.displayName = item.getName();
                         userInfo.uid = item.getBrainId();
@@ -80,6 +73,7 @@ public class DashboardFragment extends Fragment {
             }
         });
     }
+
 
     @Override
     public void onDestroyView() {

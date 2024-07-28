@@ -1,4 +1,4 @@
-package com.workdance.chatbot.api.dto;
+package com.workdance.chatbot.api.dto.rep;
 
 import lombok.Data;
 
@@ -11,4 +11,6 @@ public class MessageItemRep {
     private String assistant;
     private String brainName;
     private String gmtCreate;
+    private String brainId;
+    private String brainLogo;
 }

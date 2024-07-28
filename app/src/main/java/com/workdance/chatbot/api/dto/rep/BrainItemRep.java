@@ -1,4 +1,4 @@
-package com.workdance.chatbot.api.dto;
+package com.workdance.chatbot.api.dto.rep;
 
 import lombok.Data;
 

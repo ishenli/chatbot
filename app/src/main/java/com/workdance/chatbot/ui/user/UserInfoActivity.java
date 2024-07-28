@@ -5,14 +5,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import com.workdance.chatbot.R;
-import com.workdance.chatbot.ui.chat.ChatActivity;
 import com.workdance.chatbot.core.BaseActivity;
 import com.workdance.chatbot.databinding.ActivityUserInfoBinding;
 import com.workdance.chatbot.model.Conversation;
 import com.workdance.chatbot.model.UserInfo;
+import com.workdance.chatbot.ui.chat.ChatActivity;
 
 public class UserInfoActivity extends BaseActivity {
     private static final String TAG = "UserInfoActivity";
@@ -72,7 +70,7 @@ public class UserInfoActivity extends BaseActivity {
 
     @Override
     protected void afterViews() {
-        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        userViewModel = getApplicationScopeViewModel(UserViewModel.class);
         binding.setLifecycleOwner(this);
         binding.setViewModel(userViewModel);
 

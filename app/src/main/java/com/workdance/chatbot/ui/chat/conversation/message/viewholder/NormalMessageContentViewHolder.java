@@ -2,19 +2,24 @@ package com.workdance.chatbot.ui.chat.conversation.message.viewholder;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.workdance.chatbot.R;
-import com.workdance.chatbot.ui.chat.conversation.MessageVO;
-import com.workdance.chatbot.ui.chat.conversation.ConversationFragment;
-import com.workdance.chatbot.model.Message;
 import com.workdance.chatbot.model.Conversation;
+import com.workdance.chatbot.model.Message;
+import com.workdance.chatbot.ui.chat.conversation.ConversationFragment;
+import com.workdance.chatbot.ui.chat.conversation.MessageVO;
 
 public abstract class NormalMessageContentViewHolder extends MessageContentViewHolder {
     private TextView nameTextView;
+    ImageView portraitImageView;
 
     public NormalMessageContentViewHolder(@NonNull ConversationFragment fragment, RecyclerView.Adapter adapter, View itemView) {
         super(fragment, adapter, itemView);
@@ -27,6 +32,7 @@ public abstract class NormalMessageContentViewHolder extends MessageContentViewH
 
     private void bindViews(View itemView) {
         nameTextView = itemView.findViewById(R.id.nameTextView);
+        portraitImageView = itemView.findViewById(R.id.portraitImageView);
     }
 
     @Override
@@ -48,11 +54,26 @@ public abstract class NormalMessageContentViewHolder extends MessageContentViewH
     }
 
     private void setSenderAvatar(Message item) {
+        String portraitUrl = item.getAvatar();
+        if (portraitImageView != null && portraitUrl != null) {
+            Glide
+                .with(fragment)
+                .load(portraitUrl)
+                .transforms(new CenterCrop(), new RoundedCorners(10))
+                .placeholder(R.mipmap.avatar_def)
+                .into(portraitImageView);
+        }
 
     }
 
     protected void setSendStatus(Message item) {
-
+        if (item.conversation.type == Conversation.ConversationType.Single) {
+            nameTextView.setVisibility(View.GONE);
+        } else if (item.conversation.type == Conversation.ConversationType.Group) {
+            showGroupMemberAlias(message.message.conversation, message.message, message.message.sender);
+        } else {
+            // todo
+        }
     }
 
 
