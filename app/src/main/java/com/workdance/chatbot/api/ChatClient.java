@@ -12,17 +12,15 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.workdance.chatbot.api.adapter.DateTypeAdapter;
 import com.workdance.chatbot.api.dto.BaseResult;
-import com.workdance.chatbot.api.dto.rep.BrainItemRep;
 import com.workdance.chatbot.api.dto.rep.ChatDetailRep;
 import com.workdance.chatbot.api.dto.rep.ChatHistoryRep;
 import com.workdance.chatbot.api.dto.rep.ChatItemRep;
 import com.workdance.chatbot.api.dto.rep.MessageItemRep;
 import com.workdance.chatbot.api.dto.req.ChatHistoryReq;
 import com.workdance.chatbot.api.dto.req.ChatReq;
+import com.workdance.chatbot.core.dto.OperateResult;
 import com.workdance.chatbot.core.enums.ErrorCodeEnum;
-import com.workdance.chatbot.core.util.OperateResult;
-import com.workdance.chatbot.core.util.StringUtil;
-import com.workdance.chatbot.model.Assistant;
+import com.workdance.chatbot.core.util.StringUtils;
 import com.workdance.chatbot.model.Brain;
 import com.workdance.chatbot.model.Conversation;
 import com.workdance.chatbot.model.Message;
@@ -33,10 +31,14 @@ import com.workdance.chatbot.ui.chat.conversation.message.core.MessageStatus;
 import com.workdance.chatbot.ui.chat.conversation.message.core.TextMessageContent;
 import com.workdance.chatbot.ui.main.home.conversationlist.ConversationListItemVO;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -89,7 +91,7 @@ public class ChatClient {
                             // 头像先取聊天头像，再取大脑的头像
                             if (chatItem.getAvatar() == null) {
                                 String brainLogo = chatItem.getBrains().get(chatItem.getBrains().size() - 1).getLogo();
-                                if (StringUtil.isEmpty(brainLogo)) {
+                                if (StringUtils.isEmpty(brainLogo)) {
                                     chatListItemVO.avatar = "https://kimi.moonshot.cn/kimi-chat/assets/avatar/kimi_avatar_keep_light.png";
                                 } else {
                                     chatListItemVO.avatar = brainLogo;
@@ -179,40 +181,6 @@ public class ChatClient {
         return data;
     }
 
-    public static LiveData<List<Assistant>> getAllAssistant(ChatReq chatReq) {
-        MutableLiveData<List<Assistant>> data = new MutableLiveData<>();
-        getChatService().listBrain(chatReq).enqueue(new Callback<BaseResult<List<BrainItemRep>>>() {
-            @Override
-            public void onResponse(Call<BaseResult<List<BrainItemRep>>> call, Response<BaseResult<List<BrainItemRep>>> response) {
-                if (response.isSuccessful()) {
-                    List<BrainItemRep> items = response.body().getData();
-                    if (items != null) {
-                        List<Assistant> list = new ArrayList<>();
-                        for (BrainItemRep item : items) {
-                            Assistant assistant = new Assistant();
-                            assistant.setBrainId(item.getBrainId());
-                            assistant.setName(item.getName());
-                            assistant.setLogo(item.getLogo());
-                            assistant.setModel(item.getModel());
-                            assistant.setDescription(item.getDescription());
-                            list.add(assistant);
-                        }
-                        data.setValue(list);
-                    }
-
-                } else {
-                    data.setValue(null);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<BaseResult<List<BrainItemRep>>> call, Throwable throwable) {
-                Log.e(TAG, "onFailure: " + throwable);
-                data.setValue(null);
-            }
-        });
-        return data;
-    }
 
     // todo: 核心逻辑放到 ViewModel 层
     public static LiveData<MessageVO> sendChatMessage(Message message) {
@@ -280,54 +248,12 @@ public class ChatClient {
         return data;
     }
 
-
-    /**
-     * 获取对象详情，根据 chatId
-     *
-     * @param conversation
-     * @return
-     */
-    public static LiveData<Brain> getBrainById(String brainId) {
-        MutableLiveData<Brain> data = new MutableLiveData<>();
-        getChatService().brainDetail(brainId).enqueue(new Callback<BaseResult<BrainItemRep>>() {
-            @Override
-            public void onResponse(Call<BaseResult<BrainItemRep>> call, Response<BaseResult<BrainItemRep>> response) {
-                if (response.isSuccessful()) {
-                    BaseResult<BrainItemRep> result = response.body();
-                    BrainItemRep item = result.getData();
-                    if (item != null) {
-                        Brain brain = new Brain();
-                        brain.setName(item.getName());
-                        brain.setDescription(item.getDescription());
-                        brain.setLogo(item.getLogo());
-                        brain.setModel(item.getModel());
-                        brain.setBrainId(item.getBrainId());
-                        brain.setBrainType(item.getBrainType());
-                        brain.setUserId(item.getUserId());
-                        data.setValue(brain);
-                    }
-
-                } else {
-                    data.setValue(null);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<BaseResult<BrainItemRep>> call, Throwable throwable) {
-                Log.e(TAG, "onFailure: " + throwable);
-                data.setValue(null);
-            }
-        });
-        return data;
-    }
-
-
     public static LiveData<UserInfo> getUserInfoById(String userIdOrBrainId) {
         MutableLiveData<UserInfo> data = new MutableLiveData<>();
         if (userIdOrBrainId.equals(ChatApi.getDefaultUser().uid)) {
             data.setValue(ChatApi.getDefaultUser());
         } else {
-            getBrainById(userIdOrBrainId).observeForever(brain -> {
+            AssistantClient.getAssistantById(userIdOrBrainId).observeForever(brain -> {
                 UserInfo userInfo = new UserInfo();
                 userInfo.displayName = brain.getName();
                 userInfo.uid = brain.getBrainId();
@@ -410,6 +336,30 @@ public class ChatClient {
             }
         });
 
+        return data;
+    }
+
+    public static LiveData<OperateResult<String>> uploadFile(String filePath, String description) {
+        File file = new File(filePath);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
+        RequestBody descriptionBody = RequestBody.create(MultipartBody.FORM, description);
+        MutableLiveData<OperateResult<String>> data = new MutableLiveData<>();
+        getChatService().uploadFile(body, descriptionBody).enqueue(new Callback<BaseResult<String>>() {
+            @Override
+            public void onResponse(Call<BaseResult<String>> call, Response<BaseResult<String>> response) {
+                if (response.isSuccessful()) {
+                    String url = response.body().getData();
+                    OperateResult<String> rst = new OperateResult<>(url);
+                    data.setValue(rst);
+                }
+            }
+            @Override
+            public void onFailure(Call<BaseResult<String>> call, Throwable throwable) {
+                Log.e(TAG, "onFailure: " + throwable);
+                data.setValue(new OperateResult<>(throwable.getMessage()));
+            }
+        });
         return data;
     }
 }

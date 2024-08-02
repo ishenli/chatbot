@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +15,7 @@ import com.workdance.chatbot.core.BaseFragment;
 import com.workdance.chatbot.databinding.FragmentDashboardBinding;
 import com.workdance.chatbot.model.Assistant;
 import com.workdance.chatbot.model.UserInfo;
+import com.workdance.chatbot.ui.assistant.AssistantCreateActivity;
 import com.workdance.chatbot.ui.assistant.AssistantInfoActivity;
 
 public class DashboardFragment extends BaseFragment {
@@ -37,14 +37,8 @@ public class DashboardFragment extends BaseFragment {
         assistantListViewModel = getActivityScopeViewModel(AssistantListViewModel.class);
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        this.initView();
-    }
-
     @SuppressLint("NotifyDataSetChanged")
-    void initView() {
+    protected void bindViews() {
         RecyclerView recyclerView = binding.assistantList;
 
         recyclerView.setLayoutManager( new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
@@ -74,6 +68,12 @@ public class DashboardFragment extends BaseFragment {
         });
     }
 
+    public void bindEvents() {
+        binding.addBrain.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), AssistantCreateActivity.class);
+            startActivity(intent);
+        });
+    }
 
     @Override
     public void onDestroyView() {

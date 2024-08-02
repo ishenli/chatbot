@@ -3,7 +3,7 @@ package com.workdance.chatbot.ui.main.dashboard;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.workdance.chatbot.api.ChatClient;
+import com.workdance.chatbot.api.AssistantClient;
 import com.workdance.chatbot.api.dto.req.ChatReq;
 import com.workdance.chatbot.model.Assistant;
 
@@ -15,7 +15,7 @@ public class AssistantListViewModel extends ViewModel {
     public void loadAssistantList(String userId) {
         ChatReq chatReq = new ChatReq();
         chatReq.setUserId(userId);
-        ChatClient.getAllAssistant(chatReq).observeForever(assistantList::setValue);
+        AssistantClient.getAllAssistant(chatReq).observeForever(assistantList::setValue);
     }
 
     public MutableLiveData<List<Assistant>> getAssistantList() {

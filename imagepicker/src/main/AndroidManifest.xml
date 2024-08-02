@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 往SDCard写入数据权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <!-- 从SDCard读取数据权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <!-- 相机权限 -->
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <application>
+        <activity android:name=".ui.ImageBaseActivity"/>
+        <activity
+            android:name=".ui.ImageGridActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".ui.ImagePreviewActivity"
+            android:configChanges="orientation|screenSize" />
+    </application>
+</manifest>

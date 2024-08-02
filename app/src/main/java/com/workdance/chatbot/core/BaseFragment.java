@@ -1,6 +1,7 @@
 package com.workdance.chatbot.core;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,13 +23,24 @@ public abstract class BaseFragment extends Fragment {
 
     protected abstract void initViewModel();
 
+    protected void bindEvents() {}
 
     @Override
     public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initViewModel();
+
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        bindViews();
+        bindEvents();
+    }
+
+    protected void bindViews() {
+    }
 
     protected NavController nav() {
         return NavHostFragment.findNavController(this);

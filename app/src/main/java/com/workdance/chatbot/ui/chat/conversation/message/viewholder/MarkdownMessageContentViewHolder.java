@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.workdance.chatbot.R;
-import com.workdance.chatbot.core.util.StringUtil;
+import com.workdance.chatbot.core.util.StringUtils;
 import com.workdance.chatbot.ui.chat.conversation.ConversationFragment;
 import com.workdance.chatbot.ui.chat.conversation.MessageVO;
 import com.workdance.chatbot.ui.chat.conversation.message.annotation.MessageContentType;
@@ -46,7 +46,7 @@ public class MarkdownMessageContentViewHolder extends NormalMessageContentViewHo
         MarkdownMessageContent messageContent = (MarkdownMessageContent) message.message.content;
         String content = messageContent.getContent();
         // Markdown 文字处理
-        StringUtil.identifyMarkdownExpression(fragment.getContext(), contentTextView, content);
+        StringUtils.identifyMarkdownExpression(fragment.getContext(), contentTextView, content);
     }
 
 }

@@ -25,4 +25,9 @@
 
     <dimen name="dimen_30dp">30dp</dimen>
     <dimen name="dp_2">2dp</dimen>
+
+
+    <!--RoundButton-->
+    <dimen name="default_rb_border_width">1dp</dimen>
+    <dimen name="default_rb_radius">6dp</dimen>
 </resources>

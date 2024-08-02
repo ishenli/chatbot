@@ -9,7 +9,7 @@ import com.workdance.chatbot.api.ChatClient;
 import com.workdance.chatbot.api.dto.rep.ChatDetailRep;
 import com.workdance.chatbot.api.dto.rep.MessageItemRep;
 import com.workdance.chatbot.api.dto.req.ChatReq;
-import com.workdance.chatbot.core.util.OperateResult;
+import com.workdance.chatbot.core.dto.OperateResult;
 import com.workdance.chatbot.model.Conversation;
 import com.workdance.chatbot.model.ConversationInfo;
 import com.workdance.chatbot.model.Message;

@@ -11,4 +11,20 @@ public class Brain {
     private String brainType;
     private String userId;
     private String logo;
+
+    public enum BrainTypeEnum {
+        BASIC("basic"),
+        DOC("doc"),
+        API("api");
+
+        private final String value;
+
+        BrainTypeEnum(String basic) {
+            this.value = basic;
+        }
+
+        public String getValue() {
+            return value;
+        }
+    }
 }

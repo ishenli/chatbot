@@ -63,8 +63,13 @@ public class MainActivity extends BaseActivity {
     protected void onResume() {
         Log.d(TAG, "onResume: shouldRefreshHomeLiveData is " + appStatusViewModel.shouldRefreshHomeLiveData().getValue());
         super.onResume();
-        if (Boolean.TRUE.equals(appStatusViewModel.shouldRefreshHomeLiveData().getValue()) == true) {
+        if (Boolean.TRUE.equals(appStatusViewModel.shouldRefreshHomeLiveData().getValue())) {
             conversationListViewModel.loadConversationList(userViewModel.getUserId());
+            appStatusViewModel.setShouldRefreshHome(false);
+        }
+
+        if (Boolean.TRUE.equals(appStatusViewModel.shouldRefreshDashboardLiveData().getValue())) {
+            assistantListViewModel.loadAssistantList(userViewModel.getUserId());
             appStatusViewModel.setShouldRefreshHome(false);
         }
 

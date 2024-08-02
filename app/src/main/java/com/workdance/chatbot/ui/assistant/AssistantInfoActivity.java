@@ -1,27 +1,25 @@
 package com.workdance.chatbot.ui.assistant;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.workdance.chatbot.R;
 import com.workdance.chatbot.core.BaseActivity;
-import com.workdance.chatbot.databinding.ActivityUserInfoBinding;
+import com.workdance.chatbot.databinding.ActivityAssistantInfoBinding;
+import com.workdance.chatbot.model.Assistant;
 import com.workdance.chatbot.model.UserInfo;
 import com.workdance.chatbot.ui.chat.ChatActivity;
-import com.workdance.chatbot.ui.user.ChangeMyNameActivity;
-import com.workdance.chatbot.ui.user.UserViewModel;
 
 public class AssistantInfoActivity extends BaseActivity {
     private static final String TAG = "AssistantInfoActivity";
-    private ActivityUserInfoBinding binding;
+    private ActivityAssistantInfoBinding binding;
     private UserInfo userInfo;
-    private UserViewModel userViewModel;
+    private AssistantViewModel assistantViewModel;
     TextView titleTextView;
     @Override
     protected void beforeViews() {
-        binding = ActivityUserInfoBinding.inflate(getLayoutInflater());
+        binding = ActivityAssistantInfoBinding.inflate(getLayoutInflater());
     }
 
     @Override
@@ -33,7 +31,6 @@ public class AssistantInfoActivity extends BaseActivity {
     protected void bindEvents() {
         super.bindEvents();
         titleTextView = findViewById(R.id.titleTextView);
-        binding.aliasOptionItemView.setOnClickListener( v -> goToChangeName());
         binding.chatButton.setOnClickListener(v -> chat());
     }
 
@@ -45,17 +42,6 @@ public class AssistantInfoActivity extends BaseActivity {
         finish();
     }
 
-    private void goToChangeName() {
-        String userId = userViewModel.getUserId();
-        if (userId.equals(userInfo.uid)) {
-            Intent intent = new Intent(this, ChangeMyNameActivity.class);
-            intent.putExtra("userInfo", userInfo);
-            startActivity(intent);
-        } else {
-//            Intent intent = new Intent(this, ChangeMyNameActivity.class);
-//            startActivity(intent);
-        }
-    }
 
     @Override
     protected View contentLayout() {
@@ -64,39 +50,22 @@ public class AssistantInfoActivity extends BaseActivity {
 
 
     @Override
-    protected int menu() {
-        return R.menu.user_info;
-    }
-
-    @Override
     protected void afterViews() {
-        userViewModel = getApplicationScopeViewModel(UserViewModel.class);
+        assistantViewModel = getApplicationScopeViewModel(AssistantViewModel.class);
         binding.setLifecycleOwner(this);
-        binding.setViewModel(userViewModel);
+        binding.setViewModel(assistantViewModel);
 
         userInfo = getIntent().getParcelableExtra("userInfo");
         if (userInfo != null) {
-            setUserInfo(userInfo);
+            Assistant assistant = new Assistant();
+            assistant.setName(userInfo.displayName);
+            assistant.setDescription(userInfo.name);
+            assistant.setLogo(userInfo.portrait);
+            assistant.setBrainId(userInfo.uid);
+            assistantViewModel.assistant.postValue(assistant);
         }
 
-        String currentUserId = userViewModel.getUserId();
-        if (currentUserId.equals(userInfo.uid)) {
-        // 表明是当前用户
-            binding.chatButton.setVisibility(View.GONE);
-            binding.voipChatButton.setVisibility(View.GONE);
-            binding.inviteButton.setVisibility(View.GONE);
-            binding.aliasOptionItemView.setVisibility(View.VISIBLE);
-        } else {
-            binding.chatButton.setVisibility(View.VISIBLE);
-            binding.voipChatButton.setVisibility(View.GONE);
-            binding.inviteButton.setVisibility(View.GONE);
-        }
-
-    }
-
-    public void setUserInfo(UserInfo userInfo) {
-        Log.d(TAG, "setUserInfo: " + userInfo.displayName);
-        userViewModel.mUserInfo.postValue(userInfo);
+        binding.chatButton.setVisibility(View.VISIBLE);
     }
 
 }

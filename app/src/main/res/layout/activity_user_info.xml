@@ -43,7 +43,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
@@ -59,15 +59,6 @@
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold" />
-
-                    <ImageView
-                        android:id="@+id/genderImageView"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:contentDescription="TODO"
-                        android:scaleType="centerCrop"
-                        android:src="@mipmap/ic_gender_female"
-                        android:visibility="gone" />
                 </LinearLayout>
 
                 <TextView
@@ -76,16 +67,6 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:text="@{viewModel.mUserInfo.name}"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/externalDomainTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:visibility="gone"
-                    android:text="组织"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 

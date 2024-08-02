@@ -3,7 +3,7 @@ package com.workdance.chatbot.core.enums;
 
 import com.workdance.chatbot.core.error.ErrorLevels;
 import com.workdance.chatbot.core.error.ErrorTypes;
-import com.workdance.chatbot.core.util.StringUtil;
+import com.workdance.chatbot.core.util.StringUtils;
 
 public enum ErrorCodeEnum {
 
@@ -154,7 +154,7 @@ public enum ErrorCodeEnum {
      */
     public static ErrorCodeEnum getByErrDtlCode(String code) {
         for (ErrorCodeEnum value : ErrorCodeEnum.values()) {
-            if (StringUtil.equals(code, value.getErrDtlCode())) {
+            if (StringUtils.equals(code, value.getErrDtlCode())) {
                 return value;
             }
         }
@@ -163,7 +163,7 @@ public enum ErrorCodeEnum {
 
     public static ErrorCodeEnum getByDesc(String desc) {
         for (ErrorCodeEnum value : ErrorCodeEnum.values()) {
-            if (StringUtil.equals(desc, value.getDesc())) {
+            if (StringUtils.equals(desc, value.getDesc())) {
                 return value;
             }
         }

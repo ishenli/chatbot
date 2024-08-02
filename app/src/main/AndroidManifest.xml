@@ -5,11 +5,23 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- 往SDCard写入数据权限 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
     <!-- 从SDCard读取数据权限 -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <!-- 往SDCard写入数据权限 -->
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED" />
+    <!-- 网络权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
     <!-- 相机权限 -->
     <uses-permission android:name="android.permission.CAMERA"/>
 
@@ -40,6 +52,7 @@
         <activity android:name=".ui.user.ChangeMyNameActivity" android:exported="true"/>
         <activity android:name=".ui.user.UserInfoCreateActivity" android:exported="true"/>
         <activity android:name=".ui.assistant.AssistantInfoActivity" android:exported="true"/>
+        <activity android:name=".ui.assistant.AssistantCreateActivity" android:exported="true"/>
     </application>
 
 </manifest>

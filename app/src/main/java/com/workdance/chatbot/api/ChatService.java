@@ -1,22 +1,25 @@
 package com.workdance.chatbot.api;
 
 import com.workdance.chatbot.api.dto.BaseResult;
-import com.workdance.chatbot.api.dto.rep.BrainItemRep;
 import com.workdance.chatbot.api.dto.rep.ChatDetailRep;
 import com.workdance.chatbot.api.dto.rep.ChatHistoryRep;
 import com.workdance.chatbot.api.dto.rep.ChatItemRep;
+import com.workdance.chatbot.api.dto.rep.MessageItemRep;
 import com.workdance.chatbot.api.dto.req.ChatHistoryReq;
 import com.workdance.chatbot.api.dto.req.ChatReq;
-import com.workdance.chatbot.api.dto.rep.MessageItemRep;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public interface ChatService {
@@ -47,10 +50,8 @@ public interface ChatService {
     Call<BaseResult<ChatHistoryRep>> modifyChatHistory(@Path("messageId") String id, @Body ChatHistoryReq chatReq);
 
 
-
-    @POST("/api/v1/brain/list")
-    Call<BaseResult<List<BrainItemRep>>> listBrain(@Body ChatReq chatReq);
-
-    @GET("/api/v1/brain/{id}")
-    Call<BaseResult<BrainItemRep>> brainDetail(@Path("id") String id);
+    // 通用服务
+    @POST("/api/v1/upload")
+    @Multipart
+    Call<BaseResult<String>> uploadFile(@Part MultipartBody.Part file,  @Part("description") RequestBody description);
 }

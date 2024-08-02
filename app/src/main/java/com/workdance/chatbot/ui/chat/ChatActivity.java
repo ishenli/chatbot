@@ -15,7 +15,7 @@ import com.lxj.xpopup.interfaces.OnInputConfirmListener;
 import com.workdance.chatbot.R;
 import com.workdance.chatbot.api.dto.req.ChatReq;
 import com.workdance.chatbot.core.BaseActivity;
-import com.workdance.chatbot.core.util.StringUtil;
+import com.workdance.chatbot.core.util.StringUtils;
 import com.workdance.chatbot.databinding.ActivityChatBinding;
 import com.workdance.chatbot.model.Conversation;
 import com.workdance.chatbot.ui.AppStatusViewModel;
@@ -81,7 +81,7 @@ public class ChatActivity extends BaseActivity {
         boolean isPreJoinedChatRoom = intent.getBooleanExtra("isPreJoinedChatRoom", false);
         String initialFocusedMessageId = intent.getStringExtra("toFocusMessageId");
         // 如果没有 chatId，则需要创新的会话
-        if (StringUtil.isEmpty(chatId)) {
+        if (StringUtils.isEmpty(chatId)) {
             ChatReq chatReq = new ChatReq();
             chatReq.setChatName(conversationTitle);
             chatReq.setBrainId(brainId);
@@ -142,7 +142,7 @@ public class ChatActivity extends BaseActivity {
                             new OnInputConfirmListener() {
                                 @Override
                                 public void onConfirm(String text) {
-                                    if (StringUtil.isEmpty(text)) {
+                                    if (StringUtils.isEmpty(text)) {
                                         return;
                                     }
                                     ChatReq chatReq = new ChatReq();

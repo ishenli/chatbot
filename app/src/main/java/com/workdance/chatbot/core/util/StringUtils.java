@@ -6,7 +6,7 @@ import android.widget.TextView;
 import io.noties.markwon.Markwon;
 
 
-public class StringUtil {
+public class StringUtils {
 
     public static void identifyMarkdownExpression(Context context,
                                               TextView textView, String value) {
