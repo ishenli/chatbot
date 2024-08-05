@@ -1,4 +1,6 @@
 package com.workdance.imagepicker.ui;
 
-public class ImagePreviewActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class ImagePreviewActivity extends AppCompatActivity {
 }
