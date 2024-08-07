@@ -1,9 +1,9 @@
 package com.workdance.chatbot;
 
 import com.example.emojilibrary.LQREmotionKit;
-import com.workdance.chatbot.api.ChatApi;
-import com.workdance.chatbot.core.BaseApplication;
-import com.workdance.chatbot.core.util.ChatKit;
+import com.workdance.chatbot.remote.ChatApi;
+import com.workdance.core.AppKit;
+import com.workdance.core.BaseApplication;
 
 public class MyApplication extends BaseApplication {
 
@@ -12,7 +12,7 @@ public class MyApplication extends BaseApplication {
         super.onCreate();
         LQREmotionKit.init(getApplicationContext());
         ChatApi.init(this);
-        ChatKit chatKit = ChatKit.getChatKit();
+        AppKit chatKit = AppKit.getAppKit();
         chatKit.init(this);
     }
 }

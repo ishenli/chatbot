@@ -13,17 +13,17 @@ import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.interfaces.OnConfirmListener;
 import com.lxj.xpopup.interfaces.OnInputConfirmListener;
 import com.workdance.chatbot.R;
-import com.workdance.chatbot.api.dto.req.ChatReq;
-import com.workdance.chatbot.core.BaseActivity;
-import com.workdance.chatbot.core.util.StringUtils;
 import com.workdance.chatbot.databinding.ActivityChatBinding;
 import com.workdance.chatbot.model.Conversation;
+import com.workdance.chatbot.remote.dto.req.ChatReq;
+import com.workdance.chatbot.ui.AppActivity;
 import com.workdance.chatbot.ui.AppStatusViewModel;
 import com.workdance.chatbot.ui.IMServiceStatusViewModel;
 import com.workdance.chatbot.ui.chat.conversation.ConversationFragment;
 import com.workdance.chatbot.ui.chat.conversation.ConversationViewModel;
+import com.workdance.core.util.StringUtils;
 
-public class ChatActivity extends BaseActivity {
+public class ChatActivity extends AppActivity {
     private static final String TAG = "ChatActivity";
     private ActivityChatBinding binding;
     private ConversationFragment conversationFragment;

@@ -6,10 +6,11 @@ import android.util.Log;
 
 import androidx.fragment.app.FragmentActivity;
 
-import com.workdance.chatbot.core.widget.emotionKeyboard.EmotionFragment;
+import com.workdance.chatbot.R;
 import com.workdance.chatbot.databinding.ConversationFragmentBinding;
 import com.workdance.chatbot.ui.chat.inputPanel.InputPanelManager;
 import com.workdance.chatbot.ui.chat.inputPanel.StageKeyboardFragment;
+import com.workdance.core.widget.emotionKeyboard.EmotionFragment;
 
 import lombok.Setter;
 
@@ -57,7 +58,7 @@ public class ConversationInputPanel {
                 .bindSendBtn(binding.sendButton)
                 .bindInputEditText(binding.chatEditText)
                 .bindMoreInputFragment(new StageKeyboardFragment())
-                .bindMotionInputFragment(new EmotionFragment(activity));
+                .bindMotionInputFragment(new EmotionFragment(activity, R.id.chat_edit_text));
         bindEvents(binding);
     }
 

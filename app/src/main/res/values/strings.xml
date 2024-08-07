@@ -21,4 +21,15 @@
     <string name="add_to_contact">添加到通讯录</string>
     <string name="change_my_name_tip">好名字可以让你的朋友 更容易记住你。</string>
     <string name="addUser">新增用户</string>
+
+
+    <string name="mm_short_video_with_desc">短视频（竖屏类抖音）</string>
+    <string name="mm_feed_video_with_desc">中视频（横屏）</string>
+    <string name="mm_long_video">长视频</string>
+    <string name="mm_short_video">短视频</string>
+    <string name="mm_feed_video">中视频</string>
+    <string name="mm_mini_drama">短剧</string>
+    <string name="vevod_mini_drama_grid_cover_item_total_desc">全%d集</string>
+    <string name="vevod_mini_drama_main_tab_title_theater">剧场</string>
+    <string name="vevod_mini_drama_main_tab_title_recommend">推荐</string>w
 </resources>

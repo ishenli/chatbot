@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <com.workdance.multimedia.player.widget.RatioFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:ratio="0.68125"
+        app:ratioMode="width"
+        tools:ignore="MissingConstraints">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp">
+
+            <ImageView
+                android:id="@+id/cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#EEEEEE"
+                android:contentDescription="@null" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/mm_drama_grid_cover_item_cover_shadow" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/playCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:layout_marginStart="6dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:text="29.3w"
+            android:textColor="#E5FFFFFF"
+            android:textFontWeight="500"
+            android:textSize="12sp"
+            android:drawablePadding="8dp"
+            app:drawableLeftCompat="@drawable/icon_play" />
+    </com.workdance.multimedia.player.widget.RatioFrameLayout>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="#161823"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints"
+        tools:text="做梦吧晶晶" />
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="2dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="#80161823"
+        android:textSize="12sp"
+        tools:ignore="MissingConstraints"
+        tools:text="全20集" />
+</LinearLayout>

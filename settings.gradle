@@ -28,7 +28,17 @@ dependencyResolutionManagement {
     }
 }
 
+buildCache {
+    local {
+        directory = new File(rootDir, 'build-cache')
+        removeUnusedEntriesAfterDays = 7
+    }
+}
+
 rootProject.name = "chatbot"
+
 include ':app'
 include ':emojilibrary'
 include ':imagepicker'
+include ':multimedia'
+include ':core'

@@ -7,9 +7,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.workdance.chatbot.api.ChatApi;
-import com.workdance.chatbot.core.enums.ErrorCodeEnum;
-import com.workdance.chatbot.core.dto.OperateResult;
+import com.workdance.chatbot.remote.ChatApi;
+import com.workdance.core.enums.ErrorCodeEnum;
+import com.workdance.core.dto.OperateResult;
 import com.workdance.chatbot.model.UserInfo;
 import com.workdance.chatbot.repository.entity.UserEntity;
 

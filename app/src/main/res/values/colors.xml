@@ -30,4 +30,9 @@
     <color name="red6">#D54A47</color>
     <color name="red7">#E64340</color>
     <color name="red8">#FF3E3E</color>
+
+
+    <!-- tabbar 的颜色-->
+    <color name="mm_drama_main_tab_indicator_light">#161823</color>
+    <color name="mm_drama_main_tab_indicator_dark">#FFFFFF</color>
 </resources>

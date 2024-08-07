@@ -12,10 +12,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.workdance.chatbot.R;
-import com.workdance.chatbot.api.AssistantClient;
-import com.workdance.chatbot.core.widget.CheckList.CheckListItem;
-import com.workdance.chatbot.core.widget.CheckList.CheckListViewModel;
-import com.workdance.chatbot.core.widget.CheckList.NormalCheckListView;
+import com.workdance.chatbot.remote.AssistantClient;
+import com.workdance.core.widget.checkList.CheckListItem;
+import com.workdance.core.widget.checkList.CheckListViewModel;
+import com.workdance.core.widget.checkList.NormalCheckListView;
 import com.workdance.chatbot.databinding.FragmentAssistantSheetBinding;
 
 import java.util.List;

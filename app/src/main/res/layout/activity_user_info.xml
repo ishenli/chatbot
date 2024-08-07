@@ -85,7 +85,7 @@
 
         <View style="@style/Line" />
 
-        <com.workdance.chatbot.core.widget.OptionItemView
+        <com.workdance.core.widget.OptionItemView
                 android:id="@+id/aliasOptionItemView"
                 style="@style/OptionItem"
                 android:background="@drawable/selector_common_item"

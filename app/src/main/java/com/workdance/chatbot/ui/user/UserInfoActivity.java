@@ -6,13 +6,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.workdance.chatbot.R;
-import com.workdance.chatbot.core.BaseActivity;
 import com.workdance.chatbot.databinding.ActivityUserInfoBinding;
 import com.workdance.chatbot.model.Conversation;
 import com.workdance.chatbot.model.UserInfo;
+import com.workdance.chatbot.ui.AppActivity;
 import com.workdance.chatbot.ui.chat.ChatActivity;
 
-public class UserInfoActivity extends BaseActivity {
+public class UserInfoActivity extends AppActivity {
     private static final String TAG = "UserInfoActivity";
     private ActivityUserInfoBinding binding;
     private UserInfo userInfo;

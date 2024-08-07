@@ -24,7 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.workdance.chatbot.R;
-import com.workdance.chatbot.core.widget.emotionKeyboard.EmotionFragment;
+import com.workdance.core.widget.emotionKeyboard.EmotionFragment;
 
 public class InputPanelManager {
 

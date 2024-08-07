@@ -5,13 +5,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.workdance.chatbot.R;
-import com.workdance.chatbot.core.BaseActivity;
 import com.workdance.chatbot.databinding.ActivityAssistantInfoBinding;
 import com.workdance.chatbot.model.Assistant;
 import com.workdance.chatbot.model.UserInfo;
+import com.workdance.chatbot.ui.AppActivity;
 import com.workdance.chatbot.ui.chat.ChatActivity;
 
-public class AssistantInfoActivity extends BaseActivity {
+public class AssistantInfoActivity extends AppActivity {
     private static final String TAG = "AssistantInfoActivity";
     private ActivityAssistantInfoBinding binding;
     private UserInfo userInfo;

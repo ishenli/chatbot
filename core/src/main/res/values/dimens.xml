@@ -1,0 +1,5 @@
+<resources>
+    <!--RoundButton-->
+    <dimen name="default_rb_border_width">1dp</dimen>
+    <dimen name="default_rb_radius">6dp</dimen>
+</resources>

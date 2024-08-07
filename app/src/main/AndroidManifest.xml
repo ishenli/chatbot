@@ -53,6 +53,10 @@
         <activity android:name=".ui.user.UserInfoCreateActivity" android:exported="true"/>
         <activity android:name=".ui.assistant.AssistantInfoActivity" android:exported="true"/>
         <activity android:name=".ui.assistant.AssistantCreateActivity" android:exported="true"/>
+        <activity android:name=".ui.multimedia.MultimediaHomeActivity" android:exported="true"/>
+        <activity android:name=".ui.multimedia.VideoActivity" android:exported="true"/>
+        <activity android:name=".ui.multimedia.DramaMainActivity" android:exported="true"/>
+        <activity android:name=".ui.multimedia.DramaDetailVideoActivity" android:exported="true"/>
     </application>
 
 </manifest>

@@ -10,7 +10,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.workdance.chatbot.R;
-import com.workdance.chatbot.core.BaseActivity;
+import com.workdance.core.BaseActivity;
 import com.workdance.chatbot.databinding.ActivityMainBinding;
 import com.workdance.chatbot.ui.AppStatusViewModel;
 import com.workdance.chatbot.ui.main.dashboard.AssistantListViewModel;

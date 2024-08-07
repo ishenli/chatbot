@@ -3,7 +3,7 @@ package com.workdance.chatbot.ui.main.home.conversationlist;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.workdance.chatbot.api.ChatClient;
+import com.workdance.chatbot.remote.ChatClient;
 
 import java.util.List;
 

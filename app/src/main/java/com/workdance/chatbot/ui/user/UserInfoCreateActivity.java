@@ -10,12 +10,12 @@ import android.widget.Toast;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.workdance.chatbot.R;
-import com.workdance.chatbot.core.BaseActivity;
-import com.workdance.chatbot.core.widget.SimpleTextWatcher;
 import com.workdance.chatbot.databinding.ActivityUserCreateBinding;
 import com.workdance.chatbot.model.UserInfo;
+import com.workdance.chatbot.ui.AppActivity;
+import com.workdance.core.widget.SimpleTextWatcher;
 
-public class UserInfoCreateActivity extends BaseActivity {
+public class UserInfoCreateActivity extends AppActivity {
     private ActivityUserCreateBinding binding;
     private MenuItem confirmMenuItem;
     private UserViewModel userViewModel;

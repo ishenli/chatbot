@@ -13,21 +13,21 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.workdance.chatbot.R;
-import com.workdance.chatbot.core.BaseActivity;
-import com.workdance.chatbot.core.util.ImageUtils;
-import com.workdance.chatbot.core.widget.CheckList.CheckListItem;
-import com.workdance.chatbot.core.widget.SimpleTextWatcher;
 import com.workdance.chatbot.databinding.ActivityAssistantCreateBinding;
 import com.workdance.chatbot.model.Assistant;
 import com.workdance.chatbot.model.Brain;
+import com.workdance.chatbot.ui.AppActivity;
 import com.workdance.chatbot.ui.AppStatusViewModel;
+import com.workdance.core.util.ImageUtils;
+import com.workdance.core.widget.SimpleTextWatcher;
+import com.workdance.core.widget.checkList.CheckListItem;
 import com.workdance.imagepicker.ImagePicker;
 import com.workdance.imagepicker.model.ImageItem;
 
 import java.io.File;
 import java.util.ArrayList;
 
-public class AssistantCreateActivity extends BaseActivity implements AssistantModalBottomSheet.OnDialogListener {
+public class AssistantCreateActivity extends AppActivity implements AssistantModalBottomSheet.OnDialogListener {
     private ActivityAssistantCreateBinding binding;
     private MenuItem confirmMenuItem;
     private AssistantViewModel assistantViewModel;

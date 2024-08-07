@@ -38,7 +38,7 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp" />
 
-                <com.workdance.chatbot.core.widget.button.RoundButton
+                <com.workdance.core.widget.button.RoundButton
                     android:layout_marginTop="24dp"
                     android:id="@+id/btn_set_avatar"
                     android:textColor="@color/color_primary"

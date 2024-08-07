@@ -14,9 +14,9 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.workdance.chatbot.api.ChatClient;
-import com.workdance.chatbot.core.BaseFragment;
-import com.workdance.chatbot.core.util.ChatKit;
+import com.workdance.chatbot.remote.ChatClient;
+import com.workdance.core.BaseFragment;
+import com.workdance.core.AppKit;
 import com.workdance.chatbot.databinding.ConversationFragmentBinding;
 import com.workdance.chatbot.model.Brain;
 import com.workdance.chatbot.model.Conversation;
@@ -141,7 +141,7 @@ public class ConversationFragment extends BaseFragment implements ConversationMe
             if (messageVO != null) {
                 adapter.hideStreamLoading();
                 adapter.addNewMessage(messageVO);
-                ChatKit.postTaskDelay(() -> {
+                AppKit.postTaskDelay(() -> {
                     binding.recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
                 }, 100);
                 appStatusViewModel.setShouldRefreshHome(true);

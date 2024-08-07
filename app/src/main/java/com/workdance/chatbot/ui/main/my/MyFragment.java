@@ -94,21 +94,21 @@ public class MyFragment extends Fragment {
 
     private void initServiceBody() {
         ArrayList<ServiceItem> data = new ArrayList<>();
-        data.add(new ServiceItem(R.drawable.icon_pay, "支付"));
-        data.add(new ServiceItem(R.drawable.icon_qianbao, "钱包"));
-        data.add(new ServiceItem(R.drawable.icon_shop, "购物"));
-        data.add(new ServiceItem(R.drawable.icon_sport, "运动"));
-        data.add(new ServiceItem(R.drawable.icon_see, "看一看"));
-        data.add(new ServiceItem(R.drawable.icon_yao, "摇一摇"));
-        data.add(new ServiceItem(R.drawable.icon_ting, "听一听"));
-        data.add(new ServiceItem(R.drawable.icon_more, "更多"));
+        data.add(new ServiceItem(R.drawable.icon_pay, "支付", ServiceItem.ServiceItemType.Pay));
+        data.add(new ServiceItem(R.drawable.icon_qianbao, "钱包", ServiceItem.ServiceItemType.Wallet));
+        data.add(new ServiceItem(R.drawable.icon_shop, "购物", ServiceItem.ServiceItemType.Shop));
+        data.add(new ServiceItem(R.drawable.icon_sport, "运动", ServiceItem.ServiceItemType.Shop));
+        data.add(new ServiceItem(R.drawable.icon_see, "看一看", ServiceItem.ServiceItemType.See));
+        data.add(new ServiceItem(R.drawable.icon_yao, "摇一摇", ServiceItem.ServiceItemType.Shake));
+        data.add(new ServiceItem(R.drawable.icon_ting, "听一听", ServiceItem.ServiceItemType.Music));
+        data.add(new ServiceItem(R.drawable.icon_more, "更多", ServiceItem.ServiceItemType.Other));
 
         myViewModel.mData.setValue(data);
 
         RecyclerView recyclerView = binding.gridView;
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4, GridLayoutManager.VERTICAL, false));
         recyclerView.setPadding(0, 0, 0, 0);
-        recyclerView.setAdapter(new GridAdapter(myViewModel.getData().getValue()));
+        recyclerView.setAdapter(new GridAdapter(getActivity(), myViewModel.getData().getValue()));
 
     }
 

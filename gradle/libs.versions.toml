@@ -34,6 +34,7 @@ roomRuntime = "2.6.1"
 roomRxjava3 = "2.6.1"
 roomTesting = "2.6.1"
 rxandroid = "3.0.0"
+xpopup = "2.10.0"
 
 [libraries]
 compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compiler" }
@@ -69,6 +70,7 @@ room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRunti
 room-rxjava3 = { module = "androidx.room:room-rxjava3", version.ref = "roomRxjava3" }
 room-testing = { module = "androidx.room:room-testing", version.ref = "roomTesting" }
 rxandroid = { module = "io.reactivex.rxjava3:rxandroid", version.ref = "rxandroid" }
+xpopup = { module = "com.github.li-xiaojun:XPopup", version.ref = "xpopup" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

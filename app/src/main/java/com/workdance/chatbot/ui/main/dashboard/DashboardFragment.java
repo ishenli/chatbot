@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.workdance.chatbot.core.BaseFragment;
+import com.workdance.core.BaseFragment;
 import com.workdance.chatbot.databinding.FragmentDashboardBinding;
 import com.workdance.chatbot.model.Assistant;
 import com.workdance.chatbot.model.UserInfo;
@@ -38,7 +38,7 @@ public class DashboardFragment extends BaseFragment {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    protected void bindViews() {
+    protected void bindViews(View view) {
         RecyclerView recyclerView = binding.assistantList;
 
         recyclerView.setLayoutManager( new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));

@@ -10,12 +10,12 @@ import android.widget.Toast;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.workdance.chatbot.R;
-import com.workdance.chatbot.core.BaseActivity;
-import com.workdance.chatbot.core.widget.SimpleTextWatcher;
 import com.workdance.chatbot.databinding.ActivityUserChangeMyNameBinding;
 import com.workdance.chatbot.model.UserInfo;
+import com.workdance.chatbot.ui.AppActivity;
+import com.workdance.core.widget.SimpleTextWatcher;
 
-public class ChangeMyNameActivity extends BaseActivity {
+public class ChangeMyNameActivity extends AppActivity {
     private ActivityUserChangeMyNameBinding binding;
     private MenuItem confirmMenuItem;
     private UserViewModel userViewModel;

@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.workdance.chatbot.core.BaseFragment;
+import com.workdance.core.BaseFragment;
 import com.workdance.chatbot.databinding.FragmentHomeBinding;
 import com.workdance.chatbot.model.Assistant;
 import com.workdance.chatbot.ui.chat.ChatActivity;

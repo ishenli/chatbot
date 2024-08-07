@@ -4,12 +4,12 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.workdance.chatbot.api.ChatApi;
-import com.workdance.chatbot.api.ChatClient;
-import com.workdance.chatbot.api.dto.rep.ChatDetailRep;
-import com.workdance.chatbot.api.dto.rep.MessageItemRep;
-import com.workdance.chatbot.api.dto.req.ChatReq;
-import com.workdance.chatbot.core.dto.OperateResult;
+import com.workdance.chatbot.remote.ChatApi;
+import com.workdance.chatbot.remote.ChatClient;
+import com.workdance.chatbot.remote.dto.rep.ChatDetailRep;
+import com.workdance.chatbot.remote.dto.rep.MessageItemRep;
+import com.workdance.chatbot.remote.dto.req.ChatReq;
+import com.workdance.core.dto.OperateResult;
 import com.workdance.chatbot.model.Conversation;
 import com.workdance.chatbot.model.ConversationInfo;
 import com.workdance.chatbot.model.Message;

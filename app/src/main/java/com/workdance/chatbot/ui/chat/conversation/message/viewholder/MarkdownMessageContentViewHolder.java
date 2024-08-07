@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.workdance.chatbot.R;
-import com.workdance.chatbot.core.util.StringUtils;
+import com.workdance.core.util.StringUtils;
 import com.workdance.chatbot.ui.chat.conversation.ConversationFragment;
 import com.workdance.chatbot.ui.chat.conversation.MessageVO;
 import com.workdance.chatbot.ui.chat.conversation.message.annotation.MessageContentType;

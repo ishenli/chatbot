@@ -36,14 +36,16 @@ android {
 
 dependencies {
 
+    implementation project(':imagepicker')
+    implementation project(":emojilibrary")
+    implementation project(":multimedia")
+    implementation project(":core")
+
     implementation libs.retrofit
     implementation libs.retrofit2.converter.gson
     implementation libs.gson
     implementation libs.core
     implementation libs.lombok
-    implementation project(':imagepicker')
-    implementation project(":emojilibrary")
-
     annotationProcessor libs.lombok
 
     // room
@@ -63,17 +65,14 @@ dependencies {
     androidTestImplementation libs.espresso.core.v340
     testImplementation libs.core.testing
 
-    implementation libs.markwon.core
-
-
     // 基础库
-    implementation 'com.github.li-xiaojun:XPopup:2.10.0'
+    implementation libs.markwon.core
+    implementation libs.xpopup
     implementation platform("com.mpaas.android:$mpaas_artifact:$mpaas_baseline")
     implementation libs.glide
     implementation libs.joda.time
     implementation libs.legacy.support.v4
     annotationProcessor libs.compiler
-    implementation libs.picasso
     implementation libs.appcompat
     implementation libs.material
     implementation libs.constraintlayout

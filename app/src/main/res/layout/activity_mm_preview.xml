@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:background="@android:color/black" />
 
-    <com.workdance.chatbot.core.widget.ViewPagerFixed
+    <com.workdance.core.widget.ViewPagerFixed
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

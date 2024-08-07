@@ -14,7 +14,7 @@ import com.workdance.chatbot.ui.chat.conversation.ConversationMessageAdapter;
 import com.workdance.chatbot.ui.chat.conversation.MessageVO;
 import com.workdance.chatbot.ui.chat.conversation.MessageViewModel;
 import com.workdance.chatbot.model.Message;
-import com.workdance.chatbot.core.util.TimeUtils;
+import com.workdance.core.util.TimeUtils;
 
 public abstract class MessageContentViewHolder extends RecyclerView.ViewHolder {
     @NonNull

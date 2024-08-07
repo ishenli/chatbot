@@ -6,10 +6,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.workdance.chatbot.api.AssistantClient;
-import com.workdance.chatbot.api.ChatClient;
-import com.workdance.chatbot.core.dto.OperateResult;
-import com.workdance.chatbot.core.util.FileUtils;
+import com.workdance.chatbot.config.Constant;
+import com.workdance.chatbot.remote.AssistantClient;
+import com.workdance.chatbot.remote.ChatClient;
+import com.workdance.core.dto.OperateResult;
+import com.workdance.core.util.FileUtils;
 import com.workdance.chatbot.model.Assistant;
 import com.workdance.chatbot.model.Brain;
 
@@ -42,7 +43,7 @@ public class AssistantViewModel extends ViewModel {
             ChatClient.uploadFile(imagePath, "头像上传").observeForever(response -> {
                 if (response.isSuccess()) {
                     Assistant assistant1 = new Assistant();
-                    assistant1.setLogo(FileUtils.getStaticFilePath(response.getResult()));
+                    assistant1.setLogo(FileUtils.getStaticFilePath(Constant.STATIC_SERVICE_HOSTNAME, response.getResult()));
                     Log.d(TAG, "updateAssistantAvatar: " + assistant1.getLogo());
                     assistant.setValue(assistant1);
                     resultLiveData.setValue(response.getResult());

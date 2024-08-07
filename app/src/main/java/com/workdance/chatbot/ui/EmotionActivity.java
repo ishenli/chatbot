@@ -5,8 +5,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.workdance.chatbot.R;
-import com.workdance.chatbot.api.ChatAIClient;
-import com.workdance.chatbot.api.dto.req.ChatReq;
+import com.workdance.chatbot.remote.ChatAIClient;
+import com.workdance.chatbot.remote.dto.req.ChatReq;
 
 public class EmotionActivity extends AppCompatActivity {
     public void onCreate(android.os.Bundle savedInstanceState)

@@ -6,11 +6,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.workdance.chatbot.api.ChatAIClient;
-import com.workdance.chatbot.api.ChatApi;
-import com.workdance.chatbot.api.ChatClient;
-import com.workdance.chatbot.api.dto.StreamEventEnum;
-import com.workdance.chatbot.api.dto.req.ChatReq;
+import com.workdance.chatbot.remote.ChatAIClient;
+import com.workdance.chatbot.remote.ChatApi;
+import com.workdance.chatbot.remote.ChatClient;
+import com.workdance.chatbot.remote.dto.StreamEventEnum;
+import com.workdance.chatbot.remote.dto.req.ChatReq;
 import com.workdance.chatbot.model.Conversation;
 import com.workdance.chatbot.model.Message;
 import com.workdance.chatbot.ui.chat.conversation.message.core.MarkdownMessageContent;
