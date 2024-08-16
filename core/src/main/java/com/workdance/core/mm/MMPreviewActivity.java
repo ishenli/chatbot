@@ -1,4 +1,4 @@
-package com.workdance.chatbot.ui.multimedia;
+package com.workdance.core.mm;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +9,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.workdance.chatbot.R;
+import com.workdance.core.R;
 
 import java.util.ArrayList;
 import java.util.List;

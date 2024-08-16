@@ -18,7 +18,6 @@ import com.workdance.chatbot.R;
 import com.workdance.chatbot.databinding.FragmentMyBinding;
 import com.workdance.chatbot.model.UserInfo;
 import com.workdance.chatbot.ui.user.UserInfoActivity;
-import com.workdance.chatbot.ui.user.UserInfoCreateActivity;
 import com.workdance.chatbot.ui.user.UserViewModel;
 
 import java.util.ArrayList;
@@ -74,19 +73,12 @@ public class MyFragment extends Fragment {
 
     private void initView() {
         initServiceBody();
-        binding.avatar.setRoundSize(16);
-        binding.avatar.setRounded(true);
     }
 
     public void initEvent() {
         binding.meInfo.setOnClickListener( v -> {
             Intent intent = new Intent(getActivity(), UserInfoActivity.class);
             intent.putExtra("userInfo", userInfo);
-            startActivity(intent);
-        });
-
-        binding.addUserBtn.setOnClickListener( view -> {
-            Intent intent = new Intent(getActivity(), UserInfoCreateActivity.class);
             startActivity(intent);
         });
     }

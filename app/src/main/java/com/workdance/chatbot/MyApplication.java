@@ -4,6 +4,7 @@ import com.example.emojilibrary.LQREmotionKit;
 import com.workdance.chatbot.remote.ChatApi;
 import com.workdance.core.AppKit;
 import com.workdance.core.BaseApplication;
+import com.workdance.core.util.LogUtils;
 
 public class MyApplication extends BaseApplication {
 
@@ -14,5 +15,8 @@ public class MyApplication extends BaseApplication {
         ChatApi.init(this);
         AppKit chatKit = AppKit.getAppKit();
         chatKit.init(this);
+
+        // 各种开关
+        LogUtils.ENABLE_LOG = true;
     }
 }

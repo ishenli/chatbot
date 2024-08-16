@@ -1,4 +1,4 @@
-package com.workdance.chatbot.ui.multimedia.drama;
+package com.workdance.chatbot.ui.multimedia.model;
 
 import lombok.Data;
 

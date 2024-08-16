@@ -1,12 +1,12 @@
 package com.workdance.chatbot.ui.multimedia.drama;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -14,13 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.workdance.chatbot.R;
+import com.workdance.chatbot.databinding.FragmentDramaGridCoverBinding;
+import com.workdance.chatbot.remote.MediaClient;
+import com.workdance.chatbot.ui.multimedia.DramaDetailVideoActivityResult;
+import com.workdance.chatbot.ui.multimedia.model.DramaInfo;
 import com.workdance.core.BaseFragment;
 import com.workdance.core.data.Book;
 import com.workdance.core.data.Page;
-import com.workdance.core.util.ViewUtil;
-import com.workdance.chatbot.databinding.FragmentDramaGridCoverBinding;
-import com.workdance.chatbot.remote.MediaClient;
-import com.workdance.chatbot.ui.multimedia.DramaDetailVideoActivity;
+import com.workdance.core.util.ViewUtils;
 import com.workdance.core.widget.load.RecycleViewLoadMoreHelper;
 
 import java.util.List;
@@ -32,6 +33,8 @@ public class DramaGridCoverFragment extends BaseFragment {
     private RecyclerView mRecyclerView;
     private final Book<DramaInfo> mBook = new Book<>(12);
     private RecycleViewLoadMoreHelper recycleViewLoadMoreHelper;
+    public ActivityResultLauncher<DramaDetailVideoActivityResult.DramaDetailVideoInput> mDramaLauncher = registerForActivityResult(new DramaDetailVideoActivityResult(), result -> {
+    });
 
     @Override
     protected void bindViews(View view) {
@@ -45,10 +48,10 @@ public class DramaGridCoverFragment extends BaseFragment {
                 // 点击视频封面
                 holder.itemView.setOnClickListener(v -> {
                     DramaInfo drama = mAdapter.getItem(holder.getAbsoluteAdapterPosition());
-                    // mDramaDetailPageLauncher.launch(new DramaDetailVideoInput(drama, 1, false));
-                    Intent intent = new Intent(getActivity(), DramaDetailVideoActivity.class);
-                    intent.putExtra("drama", "xx");
-                    startActivity(intent);
+                    mDramaLauncher.launch(new DramaDetailVideoActivityResult.DramaDetailVideoInput(drama, 1, false));
+                    // Intent intent = new Intent(getActivity(), DramaDetailVideoActivity.class);
+                    // intent.putExtra("drama", "xx");
+                    // startActivity(intent);
                 });
 
                 return holder;
@@ -57,8 +60,8 @@ public class DramaGridCoverFragment extends BaseFragment {
 
         mRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         ((ViewGroup.MarginLayoutParams) mRefreshLayout.getLayoutParams()).topMargin =
-                (int) (ViewUtil.getStatusBarHeight(requireActivity()) // status bar height
-                        + ViewUtil.dip2Px(requireActivity(), 44)); // tab bar height
+                (int) (ViewUtils.getStatusBarHeight(requireActivity()) // status bar height
+                        + ViewUtils.dip2Px(requireActivity(), 44)); // tab bar height
 
         mRecyclerView = view.findViewById(R.id.recyclerView);
         GridLayoutManager layoutManager = new GridLayoutManager(requireActivity(), 3);
@@ -128,7 +131,5 @@ public class DramaGridCoverFragment extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        
     }
 }

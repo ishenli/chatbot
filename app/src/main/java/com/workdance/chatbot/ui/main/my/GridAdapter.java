@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.workdance.chatbot.databinding.ViewIconItemBinding;
 import com.workdance.chatbot.ui.multimedia.MultimediaHomeActivity;
+import com.workdance.chatbot.ui.user.MoreInfoActivity;
 
 import java.util.List;
 
@@ -36,6 +37,9 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ItemViewHolder
             ServiceItem item = items.get(position);
             if (item.getCode().equals(ServiceItem.ServiceItemType.See)) {
                 MultimediaHomeActivity.intentInto(this.mActivity);
+            }
+            if (item.getCode().equals(ServiceItem.ServiceItemType.Other)) {
+                MoreInfoActivity.intentInto(this.mActivity);
             }
         });
     }

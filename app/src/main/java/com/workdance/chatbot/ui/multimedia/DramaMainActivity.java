@@ -16,7 +16,7 @@ import com.workdance.chatbot.R;
 import com.workdance.chatbot.databinding.ActivityMmDramaBinding;
 import com.workdance.chatbot.ui.multimedia.drama.DramaMainAdapter;
 import com.workdance.core.BaseActivity;
-import com.workdance.core.util.ViewUtil;
+import com.workdance.core.util.ViewUtils;
 import com.workdance.core.widget.viewpager2.ViewPager2Helper;
 
 public class DramaMainActivity extends BaseActivity {
@@ -47,8 +47,8 @@ public class DramaMainActivity extends BaseActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         mTabLayout = findViewById(R.id.tabLayout);
 
-        ((ViewGroup.MarginLayoutParams) toolbar.getLayoutParams()).topMargin = ViewUtil.getStatusBarHeight(this);;
-        ((ViewGroup.MarginLayoutParams) mTabLayout.getLayoutParams()).topMargin = ViewUtil.getStatusBarHeight(this);
+        ((ViewGroup.MarginLayoutParams) toolbar.getLayoutParams()).topMargin = ViewUtils.getStatusBarHeight(this);
+        ((ViewGroup.MarginLayoutParams) mTabLayout.getLayoutParams()).topMargin = ViewUtils.getStatusBarHeight(this);
 
         mViewPager = findViewById(R.id.viewPager);
         ViewPager2Helper.setup(mViewPager);
@@ -101,7 +101,7 @@ public class DramaMainActivity extends BaseActivity {
     }
 
 
-    private void setActionBarTheme(boolean showActionBar,
+    protected void setActionBarTheme(boolean showActionBar,
                                    boolean immersiveStatusBar,
                                    String title,
                                    int bgColor,

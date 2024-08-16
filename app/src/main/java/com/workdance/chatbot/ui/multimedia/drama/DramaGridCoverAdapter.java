@@ -20,6 +20,7 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.workdance.chatbot.R;
+import com.workdance.chatbot.ui.multimedia.model.DramaInfo;
 import com.workdance.core.util.DisplayModeHelper;
 
 import java.util.ArrayList;

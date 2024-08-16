@@ -1,8 +1,6 @@
-package com.workdance.chatbot.ui.multimedia;
+package com.workdance.core.mm;
 
 import android.graphics.Bitmap;
-
-import com.workdance.chatbot.model.Message;
 
 import lombok.Data;
 
@@ -16,7 +14,7 @@ public class MediaEntry {
     private String thumbnailUrl;
     // TODO 消息里的缩略图会被移除
     private Bitmap thumbnail;
-    private Message message;
+    // private Message message;
 
     private int width;
     private int height;

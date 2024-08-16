@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.workdance.core.util.ViewUtil;
+import com.workdance.core.util.ViewUtils;
 
 public class DramaGridCoverItemDecoration extends RecyclerView.ItemDecoration {
     @Override
@@ -26,8 +26,8 @@ public class DramaGridCoverItemDecoration extends RecyclerView.ItemDecoration {
         int yCount = itemCount % 3 == 0 ? itemCount / 3 : itemCount / 3 + 1;
 
         // Saved size
-        int _16dp = (int) ViewUtil.dip2Px(view.getContext(), 16);
-        int _8dp = (int) ViewUtil.dip2Px(view.getContext(), 8);
+        int _16dp = (int) ViewUtils.dip2Px(view.getContext(), 16);
+        int _8dp = (int) ViewUtils.dip2Px(view.getContext(), 8);
 
         // Conditions in row and column
         if (x == 0) {

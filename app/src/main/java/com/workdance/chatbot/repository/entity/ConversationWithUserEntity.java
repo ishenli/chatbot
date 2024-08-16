@@ -4,7 +4,9 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity(tableName = "conversation_with_user_table")
 @Data
 public class ConversationWithUserEntity extends BaseEntity {

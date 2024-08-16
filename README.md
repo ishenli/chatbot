@@ -1,6 +1,13 @@
 ## 说明
 
-基于安卓最新的 jetpack 技术栈实现的个人助理应用，开发的语言是 Java。
+基于安卓最新的 jetpack 技术栈实现的个人助理应用，主要用于客户端开发学习，开发的语言是 Java。
+
+### 相关功能
+| 功能点   | 功能描述        | 目前进展  |
+|-------|-------------|-------|
+| AI 对话 | 通用智能体、专业智能体 | MVP完成 |
+| 看一看   | 短视频、长视频     | MVP完成 |
+| 听一听   | 听歌、播客       | 待完成   |
 
 ### 相关技术
 + MVVM
@@ -8,12 +15,7 @@
 + LiveData
 + Room
 + Retrofit2
-
-
-### 相关应用
-
-+ [chatbot 的 web 服务](https://github.com/workdance/chatbot-web)
-+ [chatbot 的 ai 应用](https://github.com/workdance/chatbot-ai)
++ ExoPlayer
 
 ### 参考视觉稿
 
@@ -25,16 +27,17 @@ https://www.figma.com/design/cvpC33GRSIFRU1dD6QrCp4/%E5%BE%AE%E4%BF%A18.0%EF%BC%
 
 ### 准备工作
 
-#### 安装本地 gradle
+#### 启动服务端应用
++ [chatbot 的 web 服务](https://github.com/workdance/chatbot-web)
++ [chatbot 的 ai 应用](https://github.com/workdance/chatbot-ai)
 
-打开 `gradle/wrapper/gradle-wrapper.properties` 修改 gradle-bin 的地址，本地是
-
-`distributionUrl=file\:/${本地路径}/gradle-8.3-bin.zip`
+#### gradle 的安装源
++ 修改 `gradle/wrapper/gradle-wrapper.properties` 的地址为 https://mirrors.cloud.tencent.com/gradle/gradle-8.7-bin.zip
 
 
 ### 致谢
 
-+ [wildfirechat提供的聊天界面功能实现](https://github.com/wildfirechat/android-chat?tab=readme-ov-file)
++ [wildfirechat提供聊天界面功能实现](https://github.com/wildfirechat/android-chat?tab=readme-ov-file)
 + [Jetpack-MVVM-Best-Practice](https://github.com/KunMinX/Jetpack-MVVM-Best-Practice)
 + [XPopup](https://github.com/junixapp/XPopup)
 

@@ -21,7 +21,7 @@ public abstract class BaseFragment extends Fragment {
     private ViewModelProvider mActivityVMProvider;
     private ViewModelProvider mFragmentVMProvider;
 
-    protected abstract void initViewModel();
+    protected void initViewModel() {}
 
     protected void bindEvents() {}
 
@@ -29,7 +29,6 @@ public abstract class BaseFragment extends Fragment {
     public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initViewModel();
-
     }
 
     @Override
@@ -39,8 +38,7 @@ public abstract class BaseFragment extends Fragment {
         bindEvents();
     }
 
-    protected void bindViews(View view) {
-    }
+    protected void bindViews(View view) {}
 
     protected NavController nav() {
         return NavHostFragment.findNavController(this);

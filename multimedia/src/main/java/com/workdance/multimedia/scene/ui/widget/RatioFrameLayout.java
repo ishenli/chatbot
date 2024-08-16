@@ -1,4 +1,4 @@
-package com.workdance.multimedia.player.widget;
+package com.workdance.multimedia.scene.ui.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -16,7 +16,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * A FrameLayout that can be used to maintain a fixed aspect ratio.
+ * RatioFrameLayout 不是 Android 标准库的一部分，但它是一个自定义的布局容器，通常用于保持其内部视图的宽高比固定。
+ * 这种布局对于显示视频、图片或需要特定宽高比的内容特别有用，例如全屏视频播放器或图像预览。
  */
 public class RatioFrameLayout extends FrameLayout {
     public static final int RATIO_MODE_FIXED_WIDTH = 0;

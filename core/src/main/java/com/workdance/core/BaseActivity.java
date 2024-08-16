@@ -5,17 +5,21 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import androidx.annotation.MenuRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.lifecycle.ViewModel;
 
 import com.workdance.core.mvi.ViewModelScope;
+import com.workdance.core.util.ViewUtils;
 
 import java.util.Objects;
 
@@ -134,6 +138,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             return;
         }
         setSupportActionBar(toolbar);
+        ((ViewGroup.MarginLayoutParams) toolbar.getLayoutParams()).topMargin = ViewUtils.getStatusBarHeight(this);
         setToolbarTheme();
         if (toolbarTitle() != null) {
             Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false); // 清空Toolbar默认标题
@@ -142,17 +147,39 @@ public abstract class BaseActivity extends AppCompatActivity {
             toolBarText.setText(toolbarTitle());
         }
         customToolbarAndStatusBarBackgroundColor(false);
-//        SharedPreferences sp = getSharedPreferences("chat_kit_config", Context.MODE_PRIVATE);
-//        if (sp.getBoolean("darkTheme", true)) {
-//            // dark
-//            toolbar.getContext().setTheme(R.style.AppTheme_DarkAppbar);
-//            customToolbarAndStatusBarBackgroundColor(true);
-//        } else {
-//            // light
-//            toolbar.getContext().setTheme(R.style.AppTheme_LightAppbar);
-//            customToolbarAndStatusBarBackgroundColor(false);
-//        }
+    }
 
+    /**
+     * 专门用于沉浸式导航栏设置
+     * @param showActionBar
+     * @param immersiveStatusBar
+     * @param title
+     * @param bgColor
+     * @param textColor
+     */
+    protected void setActionBarTheme(boolean showActionBar,
+                                   boolean immersiveStatusBar,
+                                   String title,
+                                   int bgColor,
+                                   int textColor) {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar == null) return;
+        if (showActionBar) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            toolbar.setBackgroundColor(bgColor);
+            toolbar.setNavigationIcon(ResourcesCompat.getDrawable(
+                    getResources(),
+                    R.drawable.icon_back,
+                    getTheme()));
+            toolbar.setTitleTextColor(textColor);
+            if (toolbar.getNavigationIcon() != null) {
+                toolbar.getNavigationIcon().setTint(textColor);
+            }
+            actionBar.setTitle(title);
+        } else {
+            actionBar.hide();
+        }
     }
 
 

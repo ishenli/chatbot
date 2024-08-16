@@ -11,7 +11,7 @@ import com.workdance.chatbot.remote.api.MediaService;
 import com.workdance.chatbot.remote.dto.MediaResult;
 import com.workdance.chatbot.remote.dto.rep.DramaRep;
 import com.workdance.chatbot.remote.dto.req.DramaReq;
-import com.workdance.chatbot.ui.multimedia.drama.DramaInfo;
+import com.workdance.chatbot.ui.multimedia.model.DramaInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,43 +80,5 @@ public class MediaClient {
         });
         return data;
     }
-
-    // /**
-    //  * 获取对象详情，根据 chatId
-    //  */
-    // public static LiveData<Brain> getAssistantById(String brainId) {
-    //     MutableLiveData<Brain> data = new MutableLiveData<>();
-    //     getBrainService().listDrama(brainId).enqueue(new Callback<BaseResult<BrainItemRep>>() {
-    //         @Override
-    //         public void onResponse(Call<BaseResult<BrainItemRep>> call, Response<BaseResult<BrainItemRep>> response) {
-    //             if (response.isSuccessful()) {
-    //                 BaseResult<BrainItemRep> result = response.body();
-    //                 BrainItemRep item = result.getData();
-    //                 if (item != null) {
-    //                     Brain brain = new Brain();
-    //                     brain.setName(item.getName());
-    //                     brain.setDescription(item.getDescription());
-    //                     brain.setLogo(item.getLogo());
-    //                     brain.setModel(item.getModel());
-    //                     brain.setBrainId(item.getBrainId());
-    //                     brain.setBrainType(item.getBrainType());
-    //                     brain.setUserId(item.getUserId());
-    //                     data.setValue(brain);
-    //                 }
-    //
-    //             } else {
-    //                 data.setValue(null);
-    //             }
-    //         }
-    //
-    //         @Override
-    //         public void onFailure(Call<BaseResult<BrainItemRep>> call, Throwable throwable) {
-    //             Log.e(TAG, "onFailure: " + throwable);
-    //             data.setValue(null);
-    //         }
-    //     });
-    //     return data;
-    // }
-
 
 }

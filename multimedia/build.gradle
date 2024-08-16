@@ -26,9 +26,18 @@ android {
 }
 
 dependencies {
-
+    implementation project(":core")
+    implementation 'com.github.CarGuo.GSYVideoPlayer:GSYVideoPlayer:v9.0.0-release-jitpack'
+    implementation 'com.github.CarGuo.GSYVideoPlayer:GSYVideoPlayer-exo2:v9.0.0-release-jitpack'
+    implementation "androidx.media3:media3-exoplayer:1.4.0"
+    implementation "androidx.media3:media3-exoplayer-dash:1.4.0"
+    implementation "androidx.media3:media3-ui:1.4.0"
+    implementation libs.glide
     implementation libs.appcompat
     implementation libs.material
+    implementation libs.swiperefreshlayout
+    implementation libs.lombok
+    annotationProcessor libs.lombok
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core.v340

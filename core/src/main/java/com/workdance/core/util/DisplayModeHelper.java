@@ -161,4 +161,7 @@ public class DisplayModeHelper {
         return 0;
     }
 
+    public int getDisplayMode() {
+        return mDisplayMode;
+    }
 }

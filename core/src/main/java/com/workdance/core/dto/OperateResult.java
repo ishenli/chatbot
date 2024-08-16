@@ -16,7 +16,6 @@ public class OperateResult<T> {
         this.code = "success";
     }
 
-
     public boolean isSuccess() {
         return Objects.equals(code, "success");
     }

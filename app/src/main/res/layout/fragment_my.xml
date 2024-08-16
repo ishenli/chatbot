@@ -37,12 +37,13 @@
                     android:orientation="horizontal"
                     android:gravity="center"
                     tools:ignore="UselessParent">
-                    <com.alipay.mobile.antui.basic.AURoundImageView
+                    <ImageView
                         android:id="@+id/avatar"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:background="@drawable/bg_corners"
-                        app:imageUrl="@{viewModel.mUserInfo.portrait}"
+                        app:imageSrc="@{viewModel.mUserInfo.portrait}"
+                        app:imageRadius="@{16}"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="MissingConstraints" />
@@ -139,8 +140,9 @@
                         android:contentDescription="@string/arrow"
                         android:src="@drawable/icon_arrow_right"/>
                 </LinearLayout>
+
+                <!--朋友圈-->
                 <LinearLayout
-                    android:id="@+id/addUserBtn"
                     android:background="@drawable/bg_list_action"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
@@ -152,7 +154,7 @@
                     android:clickable="true"
                     tools:ignore="RtlSymmetry,UseCompoundDrawables">
                     <TextView
-                        android:text="@string/addUser"
+                        android:text="朋友圈"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:textSize="16sp"

@@ -33,7 +33,6 @@ android {
 
 dependencies {
     implementation project(":emojilibrary")
-    implementation project(":multimedia")
     implementation libs.glide
     implementation libs.joda.time
     implementation libs.markwon.core
