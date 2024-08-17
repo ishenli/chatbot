@@ -1,4 +1,4 @@
-package com.workdance.chatbot.ui;
+package com.workdance.chatbot.ui.demo;
 
 import android.widget.TextView;
 

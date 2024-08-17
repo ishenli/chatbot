@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.workdance.core.widget.HeadZoomLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:headViewId="@id/fl_head"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--嵌套LinearLayout使用-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <!--头部视图-->
+        <FrameLayout
+            android:id="@+id/fl_head"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@color/red0">
+            <!--给背景ImageView设置中心剪裁方式 android:scaleType="centerCrop"-->
+            <ImageView
+                android:id="@+id/iv_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/mm_main_header_bg"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="我是内容"/>
+        </FrameLayout>
+    </LinearLayout>
+</com.workdance.core.widget.HeadZoomLayout>
