@@ -8,6 +8,7 @@
 | AI 对话 | 通用智能体、专业智能体 | MVP完成 |
 | 看一看   | 短视频、长视频     | MVP完成 |
 | 听一听   | 听歌、播客       | 待完成   |
+| 探索    | 类似朋友圈的信息流   | 待完成   |
 
 ### 相关技术
 + MVVM
@@ -28,7 +29,7 @@ https://www.figma.com/design/cvpC33GRSIFRU1dD6QrCp4/%E5%BE%AE%E4%BF%A18.0%EF%BC%
 ### 准备工作
 
 #### 关联应用
-+ [chatbot 的 Java 应用](https://github.com/workdance/chatbot-core)]
++ [chatbot 的 Java 应用](https://github.com/workdance/chatbot-core)
 + [chatbot 的 Python 应用](https://github.com/workdance/chatbot-ai)
 + [chatbot 的 React PC 应用](https://github.com/workdance/chatbot-web)
 

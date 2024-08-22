@@ -22,7 +22,7 @@
 
             <!--头像面板-->
             <LinearLayout
-                android:paddingTop="20dp"
+                android:paddingTop="40dp"
                 android:paddingBottom="20dp"
                 android:layout_marginBottom="16dp"
                 android:background="@color/white"

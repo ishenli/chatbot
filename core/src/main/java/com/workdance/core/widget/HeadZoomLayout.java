@@ -646,7 +646,7 @@ public class HeadZoomLayout extends ViewGroup implements NestedScrollingParent,
     @Override
     public void onNestedScrollAccepted(View child, View target, int axes) {
         this.mNestedScrollingParentHelper.onNestedScrollAccepted(child, target, axes);
-        this.startNestedScroll(axes & 2);
+        this.startNestedScroll(axes & ViewCompat.SCROLL_AXIS_VERTICAL);
         this.mTotalUnconsumed = getOverPlusDistance();
         this.mNestedScrollInProgress = true;
     }

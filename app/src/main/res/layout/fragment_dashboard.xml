@@ -16,9 +16,9 @@
             android:background="@drawable/bg_border_bottom"
             android:layout_width="match_parent"
             android:paddingStart="20dp"
+            android:paddingTop="40dp"
             android:paddingEnd="20dp"
-            android:paddingTop="20dp"
-            android:layout_height="80dp"
+            android:layout_height="90dp"
             tools:ignore="MissingConstraints">
             <TextView
                 android:layout_width="0dp"
