@@ -1,6 +1,7 @@
 package com.workdance.core;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,7 +30,11 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public Toolbar toolbar;
     public TextView toolBarText;
-    protected boolean disableBaseBar;
+    public final static int TOOLBAR_HIDDEN = 1;
+    public final static int TOOLBAR_DEFAULT = 2;
+    public final static int TOOLBAR_TRANSPARENT = 3;
+    public final static int TOOLBAR_LIGHT = 4;
+    public final static int TOOLBAR_DARK = 5;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,9 +51,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
     }
 
-    protected void bindEvents() {
-
-    }
+    protected void bindEvents() {}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -127,30 +130,81 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
 
-    protected boolean disableBaseBar() {
-        return false;
-    }
-
-    protected void setToolbarTheme() {}
-
-    private void initToolBar() {
-        if (disableBaseBar()) {
-            return;
-        }
-        setSupportActionBar(toolbar);
-        ((ViewGroup.MarginLayoutParams) toolbar.getLayoutParams()).topMargin = ViewUtils.getStatusBarHeight(this);
-        setToolbarTheme();
-        if (toolbarTitle() != null) {
-            Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false); // 清空Toolbar默认标题
-            toolBarText = toolbar.findViewById(R.id.toolbar_title);
-            // 可以在这里动态设置标题
-            toolBarText.setText(toolbarTitle());
-        }
-        customToolbarAndStatusBarBackgroundColor(false);
+    protected int toolbarDisplayType() {
+        return TOOLBAR_DEFAULT;
     }
 
     /**
-     * 专门用于沉浸式导航栏设置
+     * 初始化Toolbar
+     */
+    private void initToolBar() {
+        int displayType = toolbarDisplayType();
+        if (displayType == TOOLBAR_HIDDEN) {
+            return;
+        }
+
+        if (displayType >= TOOLBAR_DEFAULT) {
+            // 1.0 显示工具栏并显示文字
+            setSupportActionBar(toolbar);
+            ((ViewGroup.MarginLayoutParams) toolbar.getLayoutParams()).topMargin = ViewUtils.getStatusBarHeight(this);
+            // 1.1 显示工具栏的返回
+            Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+            // 1.2 设置工具栏的标题文字
+            setToolBarText(toolbarTitle());
+
+            // 2.0 设置主题, 明亮主题
+            if (displayType == TOOLBAR_LIGHT) {
+                toolbar.getContext().setTheme(R.style.AppTheme_LightAppbar);
+                if (toolBarText != null) {
+                    toolBarText.setTextColor(Color.BLACK);
+                }
+            }
+            // 2.1 设置主题, 黑暗主题
+            if (displayType == TOOLBAR_DARK) {
+                toolbar.getContext().setTheme(R.style.AppTheme_DarkAppbar);
+                setToolBarTextColor(Color.WHITE);
+            }
+
+
+            // 2.2 设置主题, 透明主题
+            if (displayType == TOOLBAR_TRANSPARENT) {
+                toolbar.setBackgroundColor(Color.TRANSPARENT);
+            }
+
+        }
+    }
+
+    /**
+     * 设置工具栏颜色
+     * @param color
+     */
+    private void setToolBarTextColor(int color) {
+        if (toolbarTitle() != null) {
+            toolBarText = toolbar.findViewById(R.id.toolbar_title);
+            toolBarText.setTextColor(color);
+        } else {
+            toolbar.setTitleTextColor(color);
+        }
+    }
+
+    /**
+     * 设置工具栏文字
+     * @param title
+     */
+    private void setToolBarText(String title) {
+        if (toolbarTitle() != null) { // 居中标题
+            Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false); // 清空Toolbar默认标题
+            toolBarText = toolbar.findViewById(R.id.toolbar_title);
+            // 可以在这里动态设置标题
+            toolBarText.setText(title);
+        } else {
+            ActionBar actionBar = getSupportActionBar(); // 默认的标题
+            actionBar.setTitle(title);
+        }
+    }
+
+    /**
+     * 专门用于手动导航栏设置
      * @param showActionBar
      * @param immersiveStatusBar
      * @param title
@@ -172,48 +226,27 @@ public abstract class BaseActivity extends AppCompatActivity {
                     getResources(),
                     R.drawable.icon_back,
                     getTheme()));
-            toolbar.setTitleTextColor(textColor);
+            setToolBarText(title);
+            setToolBarTextColor(textColor);
             if (toolbar.getNavigationIcon() != null) {
                 toolbar.getNavigationIcon().setTint(textColor);
             }
-            actionBar.setTitle(title);
         } else {
             actionBar.hide();
         }
     }
 
 
-
-    protected void customToolbarAndStatusBarBackgroundColor(boolean isDarkTheme) {
-    }
-
-
     /**
-     * 设置状态栏和标题栏的颜色
-     *
-     * @param resId 颜色资源id
+     * 获取 ActivityScope 的ViewModel
      */
-    protected void setTitleBackgroundResource(int resId, boolean dark) {
-        toolbar.setBackgroundResource(resId);
-        setStatusBarTheme(this, dark);
-    }
-
-    public static void setStatusBarTheme(final Activity pActivity, final boolean pIsDark) {
-        // Fetch the current flags.
-        final int lFlags = pActivity.getWindow().getDecorView().getSystemUiVisibility();
-        // Update the SystemUiVisibility dependening on whether we want a Light or Dark theme.
-        pActivity.getWindow().getDecorView().setSystemUiVisibility(pIsDark ? (lFlags & ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR) : (lFlags | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR));
-    }
-
-    protected boolean showHomeMenuItem() {
-        return true;
-    }
-
-
     protected <T extends ViewModel> T getActivityScopeViewModel(@NonNull Class<T> modelClass) {
         return mViewModelScope.getActivityScopeViewModel(this, modelClass);
     }
 
+    /**
+     * 获取 ApplicationScope 的ViewModel
+     */
     protected <T extends ViewModel> T getApplicationScopeViewModel(@NonNull Class<T> modelClass) {
         return mViewModelScope.getApplicationScopeViewModel(modelClass);
     }

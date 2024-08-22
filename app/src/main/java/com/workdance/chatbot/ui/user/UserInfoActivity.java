@@ -18,6 +18,12 @@ public class UserInfoActivity extends AppActivity {
     private UserInfo userInfo;
     private UserViewModel userViewModel;
     TextView titleTextView;
+
+    @Override
+    protected int toolbarDisplayType() {
+        return TOOLBAR_LIGHT;
+    }
+
     @Override
     protected void beforeViews() {
         binding = ActivityUserInfoBinding.inflate(getLayoutInflater());

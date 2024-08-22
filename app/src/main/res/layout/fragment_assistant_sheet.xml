@@ -17,7 +17,7 @@
         <ImageView
             android:layout_marginTop="4dp"
             android:src="@drawable/icon_vertical_line2"
-            app:tint="@color/gray_400"
+            app:tint="@color/gray_bg_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <com.workdance.core.widget.checkList.NormalCheckListView

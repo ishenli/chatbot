@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.workdance.chatbot.ui.explore.viewModel.CircleCoverViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="245dp">
+
+        <ImageView
+            android:id="@+id/header_circle_cover"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/mm_main_header_bg"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/header_circle_avatar"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            app:imageSrc="@{viewModel.circleCover.avatarUrl}"
+            app:imageRadius="@{8}"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="25dp"
+            android:padding="2dp"/>
+
+        <TextView
+            android:id="@+id/header_circle_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="105dp"
+            android:layout_marginBottom="55dp"
+            android:textSize="16sp"
+            android:textColor="@color/black_text"
+            android:text="@{viewModel.circleCover.name}" />
+    </RelativeLayout>
+</layout>

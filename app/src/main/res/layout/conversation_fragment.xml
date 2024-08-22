@@ -5,7 +5,7 @@
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_hover_gray"
+    android:background="@color/gray_bg_hover"
     android:orientation="vertical">
     <LinearLayout
         android:id="@+id/chat_message_body"
@@ -22,7 +22,7 @@
             android:id="@+id/bottom_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/bg_gray"
+            android:background="@color/gray_bg"
             android:minHeight="58dp"
             android:orientation="horizontal"
             android:padding="12dp"

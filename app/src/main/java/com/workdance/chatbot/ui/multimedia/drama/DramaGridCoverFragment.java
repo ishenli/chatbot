@@ -119,13 +119,7 @@ public class DramaGridCoverFragment extends BaseFragment {
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentDramaGridCoverBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        initViewModel();
         return root;
-    }
-
-    @Override
-    protected void initViewModel() {
-
     }
 
     @Override

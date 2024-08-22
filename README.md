@@ -27,9 +27,10 @@ https://www.figma.com/design/cvpC33GRSIFRU1dD6QrCp4/%E5%BE%AE%E4%BF%A18.0%EF%BC%
 
 ### 准备工作
 
-#### 启动服务端应用
-+ [chatbot 的 web 服务](https://github.com/workdance/chatbot-web)
-+ [chatbot 的 ai 应用](https://github.com/workdance/chatbot-ai)
+#### 关联应用
++ [chatbot 的 Java 应用](https://github.com/workdance/chatbot-core)]
++ [chatbot 的 Python 应用](https://github.com/workdance/chatbot-ai)
++ [chatbot 的 React PC 应用](https://github.com/workdance/chatbot-web)
 
 #### gradle 的安装源
 + 修改 `gradle/wrapper/gradle-wrapper.properties` 的地址为 https://mirrors.cloud.tencent.com/gradle/gradle-8.7-bin.zip
@@ -40,6 +41,7 @@ https://www.figma.com/design/cvpC33GRSIFRU1dD6QrCp4/%E5%BE%AE%E4%BF%A18.0%EF%BC%
 + [wildfirechat提供聊天界面功能实现](https://github.com/wildfirechat/android-chat?tab=readme-ov-file)
 + [Jetpack-MVVM-Best-Practice](https://github.com/KunMinX/Jetpack-MVVM-Best-Practice)
 + [XPopup](https://github.com/junixapp/XPopup)
++ [BigImageViewPager 提供图片查看功能](https://github.com/SherlockGougou/BigImageViewPager)
 
 
 ### License

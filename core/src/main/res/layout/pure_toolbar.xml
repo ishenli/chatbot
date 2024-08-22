@@ -10,4 +10,13 @@
     android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
     app:titleTextColor="@android:color/black"
-    tools:title="Test Title" />
+    tools:title="Test Title">
+    <TextView
+        android:id="@+id/toolbar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_gravity="center" />
+</androidx.appcompat.widget.Toolbar>

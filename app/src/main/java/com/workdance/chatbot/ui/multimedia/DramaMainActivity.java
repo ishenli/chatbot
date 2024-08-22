@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -44,7 +43,6 @@ public class DramaMainActivity extends BaseActivity {
     @Override
     protected void bindViews() {
         super.bindViews();
-        Toolbar toolbar = findViewById(R.id.toolbar);
         mTabLayout = findViewById(R.id.tabLayout);
 
         ((ViewGroup.MarginLayoutParams) toolbar.getLayoutParams()).topMargin = ViewUtils.getStatusBarHeight(this);
@@ -106,7 +104,6 @@ public class DramaMainActivity extends BaseActivity {
                                    String title,
                                    int bgColor,
                                    int textColor) {
-        Toolbar toolbar = findViewById(R.id.toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar == null) return;
         if (showActionBar) {

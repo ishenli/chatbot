@@ -33,6 +33,11 @@ public class ChatActivity extends AppActivity {
     private AppStatusViewModel appStatusViewModel;
 
     @Override
+    protected int toolbarDisplayType() {
+        return TOOLBAR_LIGHT;
+    }
+
+    @Override
     protected void beforeViews() {
         binding = ActivityChatBinding.inflate(getLayoutInflater());
     }

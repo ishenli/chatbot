@@ -33,9 +33,10 @@ public class MultimediaHomeActivity extends BaseActivity {
         Intent intent = new Intent(activity, MultimediaHomeActivity.class);
         activity.startActivity(intent);
     }
+
     @Override
-    protected boolean disableBaseBar() {
-        return  true;
+    protected int toolbarDisplayType() {
+        return BaseActivity.TOOLBAR_HIDDEN;
     }
 
     @Override

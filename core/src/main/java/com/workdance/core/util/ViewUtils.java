@@ -20,6 +20,8 @@ public class ViewUtils {
         return px;
     }
 
+
+
     public static int getStatusBarHeight(Context context) {
         if (context == null) {
             return 0;

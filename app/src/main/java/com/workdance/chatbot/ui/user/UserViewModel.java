@@ -22,6 +22,10 @@ public class UserViewModel extends ViewModel {
     public MutableLiveData<UserInfo> mUserInfo = new MutableLiveData<>();
     public MutableLiveData<List<UserInfo>> userList = new MutableLiveData<>(new ArrayList<>());
 
+    public UserInfo getDefaultUser() {
+        return ChatApi.getDefaultUser();
+    }
+
     public String getDefaultUserName() {
         return ChatApi.getDefaultUser().name;
     }

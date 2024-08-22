@@ -45,22 +45,25 @@ public class DashboardFragment extends BaseFragment {
         recyclerView.setPadding(0, 0, 0, 0);
         assistantListViewModel.assistantList.observe(getViewLifecycleOwner(), assistants -> {
             if (myAdapter == null) {
-                myAdapter = new AssistantListAdapter(assistants, new AssistantListAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(Assistant item) {
-                        // startActivity useInfoActivity
-                        Intent intent = new Intent(getContext(), AssistantInfoActivity.class);
-                        UserInfo userInfo = new UserInfo();
-                        userInfo.displayName = item.getName();
-                        userInfo.uid = item.getBrainId();
-                        userInfo.name = item.getDescription();
-                        userInfo.portrait = item.getLogo();
-                        intent.putExtra("userInfo", userInfo);
-                        startActivity(intent);
+                if (assistants != null) {
+                    myAdapter = new AssistantListAdapter(assistants, new AssistantListAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(Assistant item) {
+                            // startActivity useInfoActivity
+                            Intent intent = new Intent(getContext(), AssistantInfoActivity.class);
+                            UserInfo userInfo = new UserInfo();
+                            userInfo.displayName = item.getName();
+                            userInfo.uid = item.getBrainId();
+                            userInfo.name = item.getDescription();
+                            userInfo.portrait = item.getLogo();
+                            intent.putExtra("userInfo", userInfo);
+                            startActivity(intent);
 
-                    }
-                });
-                recyclerView.setAdapter(myAdapter);
+                        }
+                    });
+                    recyclerView.setAdapter(myAdapter);
+                }
+
             } else {
                 myAdapter.setItems(assistants);
                 myAdapter.notifyDataSetChanged(); // 或使用 DiffUtil 进行更高效的更新

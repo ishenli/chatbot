@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.workdance.chatbot.R;
 import com.workdance.chatbot.databinding.FragmentMyBinding;
 import com.workdance.chatbot.model.UserInfo;
+import com.workdance.chatbot.ui.explore.ExploreActivity;
 import com.workdance.chatbot.ui.user.UserInfoActivity;
 import com.workdance.chatbot.ui.user.UserViewModel;
 
@@ -80,6 +81,9 @@ public class MyFragment extends Fragment {
             Intent intent = new Intent(getActivity(), UserInfoActivity.class);
             intent.putExtra("userInfo", userInfo);
             startActivity(intent);
+        });
+        binding.cycle.setOnClickListener( v -> {
+            ExploreActivity.intentInto(getActivity());
         });
     }
 

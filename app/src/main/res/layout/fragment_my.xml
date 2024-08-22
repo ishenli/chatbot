@@ -22,7 +22,8 @@
 
             <!--头像面板-->
             <LinearLayout
-                android:paddingTop="30dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
                 android:layout_marginBottom="16dp"
                 android:background="@color/white"
                 android:layout_width="match_parent"
@@ -33,7 +34,6 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="24dp"
-                    android:layout_marginBottom="16dp"
                     android:orientation="horizontal"
                     android:gravity="center"
                     tools:ignore="UselessParent">
@@ -62,7 +62,7 @@
                             android:height="24dp"
                             android:text="@{viewModel.mUserInfo.displayName}"
                             android:textAlignment="textStart"
-                            android:textColor="@color/black"
+                            android:textColor="@color/black_text"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -79,7 +79,7 @@
                             android:height="18dp"
                             android:text="@{viewModel.mUserInfo.name}"
                             android:textAlignment="textStart"
-                            android:textColor="@color/gray_primary"
+                            android:textColor="@color/gray_text"
                             android:textSize="14sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -92,7 +92,6 @@
                         android:layout_marginRight="20dp"
                         android:src="@mipmap/ic_right" />
                 </LinearLayout>
-
             </LinearLayout>
 
             <!--服务面板-->
@@ -130,7 +129,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:textSize="16sp"
-                        android:textColor="@color/black"
+                        android:textColor="@color/black_text"
                         android:textStyle="bold"
                         android:layout_height="wrap_content">
                     </TextView>
@@ -143,6 +142,7 @@
 
                 <!--朋友圈-->
                 <LinearLayout
+                    android:id="@+id/cycle"
                     android:background="@drawable/bg_list_action"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
@@ -154,11 +154,11 @@
                     android:clickable="true"
                     tools:ignore="RtlSymmetry,UseCompoundDrawables">
                     <TextView
-                        android:text="朋友圈"
+                        android:text="探索"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:textSize="16sp"
-                        android:textColor="@color/black"
+                        android:textColor="@color/black_text"
                         android:textStyle="bold"
                         android:layout_height="wrap_content">
                     </TextView>

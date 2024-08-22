@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="13sp"
-            android:textColor="@color/black"
+            android:textColor="@color/black_text"
             android:layout_marginBottom="8dp"
             android:text="@{item.name}"
             android:layout_gravity="center" />

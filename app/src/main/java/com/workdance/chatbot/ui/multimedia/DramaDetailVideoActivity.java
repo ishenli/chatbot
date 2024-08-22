@@ -19,6 +19,11 @@ public class DramaDetailVideoActivity extends BaseActivity {
     private ActivityMmDramaDetailVideoBinding binding;
 
     @Override
+    protected int toolbarDisplayType() {
+        return BaseActivity.TOOLBAR_HIDDEN;
+    }
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null) {

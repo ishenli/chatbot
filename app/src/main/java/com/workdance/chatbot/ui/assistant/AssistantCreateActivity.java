@@ -38,6 +38,11 @@ public class AssistantCreateActivity extends AppActivity implements AssistantMod
     private static final int REQUEST_CODE_PICK_IMAGE = 100;
 
     @Override
+    protected int toolbarDisplayType() {
+        return TOOLBAR_LIGHT;
+    }
+
+    @Override
     protected void beforeViews() {
         binding = ActivityAssistantCreateBinding.inflate(getLayoutInflater());
     }

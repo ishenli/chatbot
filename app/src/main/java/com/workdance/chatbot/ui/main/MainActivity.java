@@ -26,7 +26,9 @@ public class MainActivity extends BaseActivity {
     private UserViewModel userViewModel;
 
     @Override
-    protected boolean disableBaseBar() { return true;}
+    protected int toolbarDisplayType() {
+        return TOOLBAR_HIDDEN;
+    }
 
     @Override
     protected void beforeViews() {

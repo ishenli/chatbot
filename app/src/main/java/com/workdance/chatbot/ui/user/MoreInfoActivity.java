@@ -22,6 +22,11 @@ public class MoreInfoActivity extends AppActivity {
     }
 
     @Override
+    protected int toolbarDisplayType() {
+        return TOOLBAR_LIGHT;
+    }
+
+    @Override
     protected void beforeViews() {
         binding = ActivityMoreInfoBinding.inflate(getLayoutInflater());
     }

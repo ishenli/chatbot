@@ -17,6 +17,12 @@ public class AssistantInfoActivity extends AppActivity {
     private UserInfo userInfo;
     private AssistantViewModel assistantViewModel;
     TextView titleTextView;
+
+    @Override
+    protected int toolbarDisplayType() {
+        return TOOLBAR_LIGHT;
+    }
+
     @Override
     protected void beforeViews() {
         binding = ActivityAssistantInfoBinding.inflate(getLayoutInflater());

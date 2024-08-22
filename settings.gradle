@@ -9,10 +9,7 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
-        maven {
-            url 'https://mvn.cloud.alipay.com/nexus/content/repositories/open/'
-            name 'alipay'
-        }
+        maven { url 'https://jitpack.io' }
     }
 }
 dependencyResolutionManagement {

@@ -17,8 +17,8 @@
             android:layout_width="match_parent"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:paddingTop="30dp"
-            android:layout_height="90dp"
+            android:paddingTop="20dp"
+            android:layout_height="80dp"
             tools:ignore="MissingConstraints">
             <TextView
                 android:layout_width="0dp"
@@ -26,7 +26,7 @@
                 android:text="@string/title_dashboard"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
+                android:textColor="@color/black_text"
                 android:layout_height="wrap_content" />
             <ImageView
                 android:id="@+id/addBrain"

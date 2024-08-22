@@ -19,5 +19,5 @@
         app:tabGravity="center"
         app:tabMode="scrollable"
         tools:ignore="MissingConstraints" />
-    <include layout="@layout/pure_toolbar" />
+    <include layout="@layout/pure_toolbar"/>
 </FrameLayout>
