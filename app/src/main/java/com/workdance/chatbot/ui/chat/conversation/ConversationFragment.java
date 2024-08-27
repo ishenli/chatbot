@@ -121,23 +121,30 @@ public class ConversationFragment extends BaseFragment implements ConversationMe
         });
     }
 
-    private String getReceiverAvatar(List<String> toUsers) {
+    private Brain getReceiverBrain(List<String> toUsers) {
         ConversationInfo conversationInfo = conversationViewModel.getConversationInfoLiveData().getValue();
-        String avatar = "";
+        Brain brain = new Brain();
         if (conversationInfo != null && conversationInfo.getBrains() != null) {
             if (toUsers.size() == 1) {
-                Brain brain = conversationInfo.getBrains().stream().filter(item -> item.getBrainId().equals(toUsers.get(0))).collect(Collectors.toList()).get(0);
-                avatar = brain.getLogo();
+                brain = conversationInfo.getBrains().stream().filter(item -> item.getBrainId().equals(toUsers.get(0))).collect(Collectors.toList()).get(0);
             }
         }
-        return avatar;
+        return brain;
+    }
+
+    private String getReceiverAvatar(List<String> toUsers) {
+        Brain brain = getReceiverBrain(toUsers);
+        if (brain.getLogo() == null) {
+            return "";
+        }
+        return brain.getLogo();
     }
 
     public void requestAIService(Conversation conversation, List<String> toUsers, String question, MessageVO askMessageVo) {
         // 拿到 MessageVo 直接更新
-        String avatar = getReceiverAvatar(toUsers);
+        Brain brain = getReceiverBrain(toUsers);
         conversation.setTarget(toUsers.get(0));
-        messageViewModel.receiveMessage(question, avatar, conversation, askMessageVo).observe(getViewLifecycleOwner(), messageVO -> {
+        messageViewModel.receiveMessage(question, brain, conversation, askMessageVo).observe(getViewLifecycleOwner(), messageVO -> {
             if (messageVO != null) {
                 adapter.hideStreamLoading();
                 adapter.addNewMessage(messageVO);

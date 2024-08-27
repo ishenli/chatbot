@@ -10,6 +10,10 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.workdance.chatbot.model.Brain;
+import com.workdance.chatbot.model.Conversation;
+import com.workdance.chatbot.model.Message;
+import com.workdance.chatbot.model.UserInfo;
 import com.workdance.chatbot.remote.adapter.DateTypeAdapter;
 import com.workdance.chatbot.remote.api.ChatService;
 import com.workdance.chatbot.remote.dto.BaseResult;
@@ -19,27 +23,33 @@ import com.workdance.chatbot.remote.dto.rep.ChatItemRep;
 import com.workdance.chatbot.remote.dto.rep.MessageItemRep;
 import com.workdance.chatbot.remote.dto.req.ChatHistoryReq;
 import com.workdance.chatbot.remote.dto.req.ChatReq;
-import com.workdance.core.dto.OperateResult;
-import com.workdance.core.enums.ErrorCodeEnum;
-import com.workdance.core.util.StringUtils;
-import com.workdance.chatbot.model.Brain;
-import com.workdance.chatbot.model.Conversation;
-import com.workdance.chatbot.model.Message;
-import com.workdance.chatbot.model.UserInfo;
 import com.workdance.chatbot.ui.chat.conversation.MessageVO;
 import com.workdance.chatbot.ui.chat.conversation.message.core.MessageDirection;
 import com.workdance.chatbot.ui.chat.conversation.message.core.MessageStatus;
 import com.workdance.chatbot.ui.chat.conversation.message.core.TextMessageContent;
 import com.workdance.chatbot.ui.main.home.conversationlist.ConversationListItemVO;
+import com.workdance.core.dto.OperateResult;
+import com.workdance.core.enums.ErrorCodeEnum;
+import com.workdance.core.util.MarkdownFormatter;
+import com.workdance.core.util.StringUtils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,7 +61,7 @@ public class ChatClient {
     // private static final String Base_URL = "http://10.0.2.2:8080";
     private static final String Base_URL = WEB_SERVICE_HOSTNAME;
     private static Retrofit retrofit = null;
-
+    private static final ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     static Gson gson = new GsonBuilder()
             .registerTypeAdapter(Date.class, new DateTypeAdapter())
@@ -363,4 +373,57 @@ public class ChatClient {
         });
         return data;
     }
+
+    public static LiveData<OperateResult<String>> askModelAPI(ChatReq chatReq) {
+        MutableLiveData<OperateResult<String>> mData = new MutableLiveData<>();
+        getChatService().chatToModel(chatReq.getBrainId(), chatReq.getQuestion(), chatReq.getChatId()).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    executorService.submit(() -> {
+                        MarkdownFormatter markdownFormatter = new MarkdownFormatter();
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(response.body().byteStream()));
+                        String line;
+                        StringBuilder sb = new StringBuilder();
+                        try {
+                            while ((line = reader.readLine()) != null) {
+                                if (line.startsWith("data:")) {
+                                    String data = line.substring(5);
+                                    try {
+                                        // 尝试解析 JSON
+                                        JSONObject jsonObject = new JSONObject(data);
+                                        if (jsonObject.has("answer")) {
+                                            String assistantContent = jsonObject.getString("answer");
+                                            if (StringUtils.isEmpty(assistantContent)) {
+                                                continue;
+                                            }
+                                            markdownFormatter.formatMarkdown(assistantContent);
+                                            mData.postValue(new OperateResult<>(markdownFormatter.getOutput()));
+                                        }
+                                    } catch (JSONException e) {
+                                        // 如果不是 JSON 格式，直接添加整行内容
+                                        markdownFormatter.formatMarkdown(data);
+                                        mData.postValue(new OperateResult<>(markdownFormatter.getOutput()));
+                                    }
+                                }
+                            }
+                        } catch (IOException e) {
+
+                        }
+                    });
+                } else {
+                    Log.e(TAG,"SSE connection failed: " + response.message());
+                    mData.postValue(new OperateResult<>(null, ErrorCodeEnum.SYSTEM_ERROR.getErrDtlCode()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable throwable) {
+                Log.d(TAG, "onFailure: " + throwable.getMessage());
+                mData.postValue(new OperateResult<>(null, ErrorCodeEnum.SYSTEM_ERROR.getErrDtlCode()));
+            }
+        });
+        return mData;
+    }
+
 }

@@ -85,7 +85,7 @@ public class ChatActivity extends AppActivity {
         String brainId = intent.getStringExtra("brainId");
         boolean isPreJoinedChatRoom = intent.getBooleanExtra("isPreJoinedChatRoom", false);
         String initialFocusedMessageId = intent.getStringExtra("toFocusMessageId");
-        // 如果没有 chatId，则需要创新的会话
+        // 1.0 如果没有 chatId，则需要创新的会话
         if (StringUtils.isEmpty(chatId)) {
             ChatReq chatReq = new ChatReq();
             chatReq.setChatName(conversationTitle);
@@ -98,6 +98,7 @@ public class ChatActivity extends AppActivity {
             });
 
         } else {
+            // 2.0 有 ChatId，则直接使用
             conversation = new Conversation(Conversation.ConversationType.Single, chatId);
             conversationFragment.setupConversation(conversation, conversationTitle, initialFocusedMessageId, isPreJoinedChatRoom);
         }

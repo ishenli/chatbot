@@ -134,6 +134,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         return TOOLBAR_DEFAULT;
     }
 
+    protected void addStatusBarHeight(View view) {
+        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+        params.topMargin = ViewUtils.getStatusBarHeight(this);
+        view.setLayoutParams(params);
+    }
+
     /**
      * 初始化Toolbar
      */

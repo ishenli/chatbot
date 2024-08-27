@@ -67,7 +67,8 @@ public class MarkdownFormatter {
             inList = false;
             output.append("\n");
         }
-        output.append(line).append("\n\n");
+        // output.append(line).append("\n\n");
+        output.append(line);
         return output;
     }
 }

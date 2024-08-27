@@ -52,6 +52,7 @@ public class MultimediaHomeActivity extends BaseActivity {
     @Override
     protected void afterViews() {
         super.afterViews();
+        this.addStatusBarHeight(binding.actionBack);
         mActivity = this;
         mRecyclerView = binding.recyclerView;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
