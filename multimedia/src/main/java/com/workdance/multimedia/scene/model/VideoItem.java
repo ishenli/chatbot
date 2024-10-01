@@ -9,7 +9,9 @@ import java.io.Serializable;
 import java.util.List;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class VideoItem extends ExtraObject implements Serializable {
     public static final String EXTRA_VIDEO_ITEM = "extra_video_item";

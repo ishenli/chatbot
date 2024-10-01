@@ -3,24 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menu_conversation_info"
+        android:id="@+id/menu_take_photo"
         android:icon="@drawable/icon_camera"
         android:orderInCategory="100"
         android:title="拍照"
         app:showAsAction="always">
-        <menu>
-            <item
-                android:id="@+id/editChatName"
-                android:icon="@drawable/icon_edit_pen"
-                android:orderInCategory="100"
-                android:title="编辑对话名称"
-                app:showAsAction="never" />
-            <item
-                android:id="@+id/deleteChat"
-                android:icon="@drawable/icon_trash"
-                android:orderInCategory="100"
-                android:title="从对话列表删除"
-                app:showAsAction="never" />
-        </menu>
     </item>
 </menu>

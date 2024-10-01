@@ -4,4 +4,8 @@
     <string name="emo_btn_desc">表情键盘</string>
     <string name="chat_add_btn_desc">输入功能</string>
     <string name="send">发送</string>
+
+
+    <string name="common_confirm">确定</string>
+    <string name="common_cancel">取消</string>
 </resources>

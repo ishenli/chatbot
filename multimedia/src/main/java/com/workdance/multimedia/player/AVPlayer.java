@@ -9,7 +9,6 @@ import android.util.SparseArray;
 import android.view.Surface;
 
 import androidx.media3.common.MediaItem;
-import androidx.media3.common.util.UnstableApi;
 import androidx.media3.exoplayer.ExoPlayer;
 
 import com.workdance.core.data.ExtraObject;
@@ -41,7 +40,7 @@ import java.util.List;
  * 1. 添加了状态机
  * 2. 添加了事件分发
  */
-@UnstableApi public class AVPlayer extends ExtraObject implements Player {
+public class AVPlayer extends ExtraObject implements Player {
     public static final String TAG = "AVPlayer";
     private final Dispatcher mDispatcher;
     private final Context mContext;
@@ -191,7 +190,7 @@ import java.util.List;
         MediaItem mediaItem = new MediaItem.Builder()
                 .setMediaId(source.getMediaId())
                 .setUri(playTrack.getUrl())
-                .setCustomCacheKey(CacheKeyFactory.DEFAULT.generateCacheKey(source, playTrack))
+                // .setCustomCacheKey(CacheKeyFactory.DEFAULT.generateCacheKey(source, playTrack))
                 .build();
 
         mPlayer.setMediaItem(mediaItem);

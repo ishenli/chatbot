@@ -1,14 +1,21 @@
 package com.workdance.core.util;
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.ThumbnailUtils;
+import android.net.Uri;
+import android.os.Environment;
 import android.os.SystemClock;
+import android.provider.MediaStore;
 
 import com.workdance.core.AppKit;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,4 +56,33 @@ public class ImageUtils {
     }
 
 
+    /**
+     * 儲存图片到相册
+     * @param context
+     * @param mediaFile
+     * @param isImage
+     */
+    public static void saveMediaToAlbum(Context context, File mediaFile, boolean isImage) {
+        ContentResolver contentResolver = context.getContentResolver();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, System.currentTimeMillis() + "-" + mediaFile.getName());
+        contentValues.put(MediaStore.MediaColumns.MIME_TYPE, isImage ? "image/jpg" : "video/mp4");
+
+        // 开始存储
+        contentValues.put(MediaStore.MediaColumns.IS_PENDING, 1);
+        contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS);
+        Uri uri = contentResolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, contentValues);
+        try (FileOutputStream fos = (FileOutputStream) contentResolver.openOutputStream(uri);
+             FileInputStream fis = new FileInputStream(mediaFile)
+        ) {
+            fos.getChannel().transferFrom(fis.getChannel(), 0, mediaFile.length());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        contentValues.clear();
+        contentValues.put(MediaStore.MediaColumns.IS_PENDING, 0);
+        contentResolver.update(uri, contentValues, null, null);
+    }
 }

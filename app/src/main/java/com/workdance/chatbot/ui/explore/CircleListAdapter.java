@@ -2,6 +2,7 @@ package com.workdance.chatbot.ui.explore;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ import cc.shinichi.library.ImagePreview;
 import cc.shinichi.library.bean.ImageInfo;
 
 public class CircleListAdapter extends ListAdapter<Circle, RecyclerView.ViewHolder> {
+    private static final String TAG = "CircleListAdapter";
     public final static int TYPE_HEAD = 10;
     public static final int HEADVIEW_SIZE = 1;
     private OnItemClickListener listener;
@@ -60,6 +62,8 @@ public class CircleListAdapter extends ListAdapter<Circle, RecyclerView.ViewHold
             itemType = CircleViewHolder.TYPE_URL;
         } else if (Circle.TYPE_VIDEO.equals(item.getViewType())) {
             itemType = CircleViewHolder.TYPE_VIDEO;
+        } else if (Circle.TYPE_TEXT.equals(item.getViewType())) {
+            itemType = CircleViewHolder.TYPE_TEXT;
         }
         return itemType;
     }
@@ -168,12 +172,25 @@ public class CircleListAdapter extends ListAdapter<Circle, RecyclerView.ViewHold
     public static class DiffCallback extends DiffUtil.ItemCallback<Circle> {
         @Override
         public boolean areItemsTheSame(@NonNull Circle oldItem, @NonNull Circle newItem) {
-            return oldItem.getId().equals(newItem.getId());
+            Log.d(TAG, "areItemsTheSame: oldItem " + oldItem.getId() + ", newItem " + newItem.getId());
+            if (oldItem.getId() == null && newItem.getId() == null) {
+                return true;
+            }
+            if (oldItem.getId() != null && newItem.getId() != null) {
+                return oldItem.getId().equals(newItem.getId());
+            }
+            return false;
         }
 
         @Override
         public boolean areContentsTheSame(@NonNull Circle oldItem, @NonNull Circle newItem) {
-            return oldItem.getContent().equals(newItem.getContent());
+            if (oldItem.getContent() == null && newItem.getContent() == null) {
+                return true;
+            }
+            if (oldItem.getContent() != null && newItem.getContent() != null) {
+                return oldItem.getContent().equals(newItem.getContent());
+            }
+            return false;
         }
     }
 }

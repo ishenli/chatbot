@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- 透明色 -->
+    <color name="transparent">#00000000</color>
     <color name="color_primary">#1677ff</color>
     <color name="black">#1C1C1C</color>
+    <color name="black5">#0D000000</color>
     <color name="red8">#FF3E3E</color>
     <color name="im_font_color_text_hint">#abb1b6</color>
+    <!-- 对话框确认按钮的文本颜色 -->
+    <color name="common_confirm_text_color">#007AFF</color>
+    <!-- 对话框取消按钮的文本颜色 -->
+    <color name="common_cancel_text_color">#F44336</color>
+    <!-- 分割线的颜色 -->
+    <color name="common_line_color">#ECECEC</color>
 </resources>

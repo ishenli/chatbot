@@ -1,6 +1,7 @@
 package com.workdance.core;
 
 import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
@@ -255,5 +256,21 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     protected <T extends ViewModel> T getApplicationScopeViewModel(@NonNull Class<T> modelClass) {
         return mViewModelScope.getApplicationScopeViewModel(modelClass);
+    }
+
+    /**
+     *********************
+     * 权限相关的
+     *********************
+     */
+    public boolean checkPermission(String[] permissions) {
+        boolean granted = true;
+        for (String permission : permissions) {
+            granted = checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED;
+            if (!granted) {
+                break;
+            }
+        }
+        return granted;
     }
 }

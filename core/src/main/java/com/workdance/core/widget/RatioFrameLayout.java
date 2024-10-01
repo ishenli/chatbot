@@ -1,4 +1,4 @@
-package com.workdance.multimedia.scene.ui.widget;
+package com.workdance.core.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -9,7 +9,7 @@ import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.workdance.multimedia.R;
+import com.workdance.core.R;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

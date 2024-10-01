@@ -2,7 +2,7 @@ package com.workdance.chatbot.config;
 
 public class Constant {
     // private static final String Base_URL = "http://10.0.2.2:8080";
-    public static final String SERVICE_HOSTNAME = "http://debug1724725330907.test.alipay.net";
+    public static final String SERVICE_HOSTNAME = "http://debug1727679820075.test.alipay.net";
     // public static final String SERVICE_HOSTNAME = "http://10.0.2.2";
     public static final String AI_SERVICE_HOSTNAME = SERVICE_HOSTNAME + ":5050";
     public static final String WEB_SERVICE_HOSTNAME = SERVICE_HOSTNAME + ":8080";
@@ -11,4 +11,10 @@ public class Constant {
     public static final String MEDIA_SERVICE_HOSTNAME = "https://vevod-demo-server.volcvod.com";
     public static final String SHORT_VIDEO_AUTHOR_ID = "short-video";
     public static final String SHORT_VIDEO_USER_ID = "short-video";
+
+
+    public static String VIDEO_SAVE_DIR;
+    public static String AUDIO_SAVE_DIR;
+    public static String PHOTO_SAVE_DIR;
+    public static String FILE_SAVE_DIR;
 }

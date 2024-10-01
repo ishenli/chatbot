@@ -22,7 +22,7 @@ import com.workdance.multimedia.player.Player;
 import com.workdance.multimedia.player.PlayerEvent;
 import com.workdance.multimedia.player.playback.view.DisplayView;
 import com.workdance.multimedia.player.source.MediaSource;
-import com.workdance.multimedia.scene.ui.widget.RatioFrameLayout;
+import com.workdance.core.widget.RatioFrameLayout;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
