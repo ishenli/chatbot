@@ -1,9 +1,12 @@
 package com.workdance.chatbot.ui.chat.conversation;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -14,29 +17,36 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.workdance.chatbot.remote.ChatClient;
-import com.workdance.core.BaseFragment;
-import com.workdance.core.AppKit;
-import com.workdance.chatbot.databinding.ConversationFragmentBinding;
+import com.workdance.chatbot.R;
+import com.workdance.chatbot.databinding.ConversationActivityBinding;
 import com.workdance.chatbot.model.Brain;
 import com.workdance.chatbot.model.Conversation;
 import com.workdance.chatbot.model.ConversationInfo;
 import com.workdance.chatbot.model.UserInfo;
+import com.workdance.chatbot.remote.ChatClient;
 import com.workdance.chatbot.ui.AppStatusViewModel;
 import com.workdance.chatbot.ui.user.UserInfoActivity;
+import com.workdance.core.AppKit;
+import com.workdance.core.BaseFragment;
+import com.workdance.core.widget.InputAwareLayout;
+import com.workdance.core.widget.KeyboardAwareLinearLayout;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ConversationFragment extends BaseFragment implements ConversationMessageAdapter.OnPortraitClickListener {
+public class ConversationFragment extends BaseFragment implements
+        KeyboardAwareLinearLayout.OnKeyboardShownListener,
+        KeyboardAwareLinearLayout.OnKeyboardHiddenListener,
+        ConversationInputPanel.OnConversationInputPanelStateChangeListener,
+        ConversationMessageAdapter.OnPortraitClickListener {
     private static final String TAG = "convFragment";
     private static final int MESSAGE_LOAD_COUNT_PER_TIME = 20;
     private static final int MESSAGE_LOAD_AROUND = 10;
     private static final long TYPING_INTERNAL = 10 * 1000;
 
 
-    ConversationFragmentBinding binding;
+    ConversationActivityBinding binding;
 
     private ConversationMessageAdapter adapter;
     private LinearLayoutManager layoutManager;
@@ -50,6 +60,10 @@ public class ConversationFragment extends BaseFragment implements ConversationMe
     private boolean loadingNewMessage;
     private MessageViewModel messageViewModel;
     private AppStatusViewModel appStatusViewModel;
+    private InputAwareLayout rootLinearLayout;
+    private ConversationInputPanel inputPanel;
+    private RecyclerView recyclerView;
+    private Handler handler;
 
     @Override
     protected void initViewModel() {
@@ -63,14 +77,22 @@ public class ConversationFragment extends BaseFragment implements ConversationMe
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = ConversationFragmentBinding.inflate(inflater, container, false);
+        binding = ConversationActivityBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+        recyclerView = binding.msgRecyclerView;
+        rootLinearLayout = view.findViewById(R.id.rootLinearLayout);
+        initView();
+        return view;
+    }
+
+    public void initView() {
+        handler = new Handler();
         adapter = new ConversationMessageAdapter(this);
         adapter.setOnPortraitClickListener(this);
         layoutManager = new LinearLayoutManager(getActivity());
-        binding.recyclerView.setLayoutManager(layoutManager);
-        binding.recyclerView.setAdapter(adapter);
-        binding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 if (newState != RecyclerView.SCROLL_STATE_IDLE) {
@@ -91,34 +113,37 @@ public class ConversationFragment extends BaseFragment implements ConversationMe
             }
         });
         this.initInputPanel();
-        return view;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void initInputPanel() {
-        ConversationInputPanel conversationInputPanel = new ConversationInputPanel(binding, getActivity());
-        conversationInputPanel.init();
-        conversationInputPanel.setOnSendSubmitClickListener(new ConversationInputPanel.onSendSubmitClickListener() {
+        rootLinearLayout.addOnKeyboardShownListener(this);
+        inputPanel = binding.inputPanelFrameLayout;
+        inputPanel.init(this, rootLinearLayout);
+        inputPanel.setOnConversationInputPanelStateChangeListener(this);
+        inputPanel.setOnSendSubmitClickListener(new ConversationInputPanel.onSendSubmitClickListener() {
             @Override
             public void onSendSubmitClick(String txtContent) {
-                // 处理群聊的场景
-                if (conversation.type == Conversation.ConversationType.Group) {
+                messageViewModel.sendTextMsg(conversation, toUsers(), txtContent).observe(getViewLifecycleOwner(), message -> {
+                    if (message != null) {
+                        adapter.addNewMessage(message);
+                        String avatar = getReceiverAvatar(toUsers());
+                        adapter.showStreamLoading("AI 正在思考中...", avatar);
+                        scrollToCycleListBottom();
+                        // 接受 AI 的内容返回
+                        requestAIService(conversation, toUsers(), txtContent, message);
 
-                } else {
-                    messageViewModel.sendTextMsg(conversation, toUsers(), txtContent).observe(getViewLifecycleOwner(), message -> {
-                        if (message != null) {
-                            adapter.addNewMessage(message);
-                            String avatar = getReceiverAvatar(toUsers());
-                            adapter.showStreamLoading("AI 正在思考中...", avatar);
-                            binding.recyclerView.scrollToPosition(adapter.getItemCount() - 1);
-                            // 接受 AI 的内容返回
-                            requestAIService(conversation, toUsers(), txtContent, message);
-
-                        }
-                    });
-                }
-
+                    }
+                });
             }
         });
+        binding.contentLayout.setOnTouchListener((v, event) -> ConversationFragment.this.onTouch(v, event));
+        binding.msgRecyclerView.setOnTouchListener((v, event) -> ConversationFragment.this.onTouch(v, event));
+    }
+
+    private boolean onTouch(View v, MotionEvent event) {
+        inputPanel.closeConversationInputPanel();
+        return false;
     }
 
     private Brain getReceiverBrain(List<String> toUsers) {
@@ -149,7 +174,7 @@ public class ConversationFragment extends BaseFragment implements ConversationMe
                 adapter.hideStreamLoading();
                 adapter.addNewMessage(messageVO);
                 AppKit.postTaskDelay(() -> {
-                    binding.recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
+                    binding.msgRecyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
                 }, 100);
                 appStatusViewModel.setShouldRefreshHome(true);
             }
@@ -196,12 +221,12 @@ public class ConversationFragment extends BaseFragment implements ConversationMe
                 if (!TextUtils.isEmpty(focusMessageId)) {
                     initialMessagePosition = adapter.getMessagePosition(focusMessageId);
                     if (initialMessagePosition != -1) {
-                        binding.recyclerView.scrollToPosition(initialMessagePosition);
+                        binding.msgRecyclerView.scrollToPosition(initialMessagePosition);
                         adapter.highlightFocusMessage(initialMessagePosition);
                     }
                 } else {
                     moveToBottom = true;
-                    binding.recyclerView.scrollToPosition(adapter.getItemCount() - 1);
+                    binding.msgRecyclerView.scrollToPosition(adapter.getItemCount() - 1);
                 }
             }
         });
@@ -250,5 +275,51 @@ public class ConversationFragment extends BaseFragment implements ConversationMe
             intent.putExtra("userInfo", userInfo);
             startActivity(intent);
         });
+    }
+
+    @Override
+    public void onKeyboardShown() {
+        inputPanel.onKeyboardShown();
+        // recyclerView.scrollToPosition(adapter.getItemCount() - 1);
+        scrollToCycleListBottom();
+    }
+
+    public void scrollToCycleListBottom() {
+        LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+        if (layoutManager != null) {
+            int lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
+            if (lastVisibleItemPosition != RecyclerView.NO_POSITION) {
+                // 获取最后一个可见视图的 ViewHolder
+                RecyclerView.ViewHolder viewHolder = recyclerView.findViewHolderForAdapterPosition(lastVisibleItemPosition);
+                if (viewHolder != null) {
+                    // 获取最后一个可见视图的高度
+                    View itemView = viewHolder.itemView;
+                    int lastItemHeight = itemView.getHeight();
+                    int lastItemPosition = adapter.getItemCount() - 1;
+                    layoutManager.scrollToPositionWithOffset(lastItemPosition, -lastItemHeight);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onKeyboardHidden() {
+        inputPanel.onKeyboardHidden();
+    }
+
+    @Override
+    public void onInputPanelExpanded() {
+        scrollToCycleListBottom();
+    }
+
+    @Override
+    public void onInputPanelCollapsed() {
+        // do nothing
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        inputPanel.onActivityPause();
     }
 }
